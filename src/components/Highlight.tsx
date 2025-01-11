@@ -103,7 +103,7 @@ export default function Highlight() {
 					<div className='h-8 px-2.5 py-1 bg-gradient-to-b from-[#28174d] to-[#351c69] rounded-[31px] justify-start items-center gap-1 inline-flex'>
 						<BadgeIcon />
 						<div className='text-white text-sm font-bold font-ibm-mono leading-snug'>
-							{(coin.score / 10).toFixed(1) ?? '0.0'}
+							{(coin.score ?? 0 / 10).toFixed(1)}
 						</div>
 					</div>
 				</div>

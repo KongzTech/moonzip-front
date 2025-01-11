@@ -29,7 +29,7 @@ const Home = () => {
 					? Array(6)
 							.fill(0)
 							.map((_, index) => <CoinCardSkeleton key={index} />)
-					: coins.map(coin => <CoinCard key={coin.id} coin={coin} />)}
+					: coins.map(coin => <CoinCard key={coin.ca} coin={coin} />)}
 			</div>
 		</div>
 	)
