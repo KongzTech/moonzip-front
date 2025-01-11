@@ -159,12 +159,12 @@ export default function Dropdown({
 							{options.map((option, index) => (
 								<div
 									key={option}
-									className={`px-4 py-3 hover:bg-dark-700 rounded-lg mx-1 cursor-pointer transition-colors
+									className={`px-3 py-2 hover:bg-dark-700 rounded-lg mx-1 cursor-pointer transition-colors
                     ${index === selectedIndex ? 'bg-dark-700' : ''}`}
 									onClick={() => handleSelect(option)}
 								>
 									<div
-										className={`text-light-100 text-sm font-ibm-mono leading-snug ${
+										className={`text-light-100 text-sm uppercase font-semibold font-ibm-mono ${
 											index === selectedIndex ? 'opacity-100' : 'opacity-60'
 										} transition-opacity`}
 									>
