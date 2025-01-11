@@ -3,14 +3,24 @@ import { IconProps } from '@/types'
 const ProfileIcon = ({ className }: IconProps) => (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
-		width={32}
-		height={32}
+		width={24}
+		height={24}
 		fill='none'
 		className={className}
 	>
 		<path
-			fill='#fff'
-			d='M20.446 2.667h-2.963v2.962h2.963v2.963h2.963v5.926h-2.963v5.926H14.52v2.963H8.594v-2.963H5.63v-2.963H2.668v2.963h2.963v5.926h5.926v2.963h8.889V26.37h5.926v-5.926h2.963v-8.889h-2.963V5.63h-5.926V2.667Z'
+			stroke='#C9C9C9'
+			strokeLinecap='round'
+			strokeLinejoin='round'
+			strokeWidth={1.5}
+			d='M19.25 12a7.25 7.25 0 1 1-14.5 0 7.25 7.25 0 0 1 14.5 0Z'
+		/>
+		<path
+			stroke='#C9C9C9'
+			strokeLinecap='round'
+			strokeLinejoin='round'
+			strokeWidth={1.5}
+			d='M14.25 10a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0ZM7.197 17A6.237 6.237 0 0 1 12 14.75c1.93 0 3.656.875 4.802 2.25'
 		/>
 	</svg>
 )

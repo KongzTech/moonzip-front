@@ -35,6 +35,8 @@ const getLockStatus = (lock: number | undefined): LockStatus => {
 	return LockStatus.NEUTRAL
 }
 
+console.log(coin)
+
 const formatTime = (seconds: number): string => {
 	const hours = Math.floor(seconds / 3600)
 	const minutes = Math.floor((seconds % 3600) / 60)
@@ -67,7 +69,7 @@ export default function Highlight() {
 		<div className='w-full flex flex-col items-center justify-center'>
 			<div className='mt-8 w-full justify-between font-ibm-mono text-sm font-semibold items-start inline-flex'>
 				<div className='text-purple-100 hidden lg:block'>
-					HIGHLIGHT • $${coin.ticker}
+					HIGHLIGHT • ${coin.ticker}
 				</div>
 				<div className='justify-start items-center gap-4 w-full lg:w-auto lg:gap-6 flex'>
 					<div>
@@ -100,17 +102,17 @@ export default function Highlight() {
 					/>
 				</div>
 				<div className='absolute lg:top-20 lg:left-12 max-w-fit right-0 flex bg-gradient-to-b from-[#8769de]/30 to-[#8769de]/0 p-[1px] rounded-[32px]'>
-					<div className='h-8 px-2.5 py-1 bg-gradient-to-b from-[#28174d] to-[#351c69] rounded-[31px] justify-start items-center gap-1 inline-flex'>
+					<div className='h-8 px-2.5 py-1 bg-gradient-to-b from-[#28174d] to-[#351c69] rounded-[31px] icn-white justify-start items-center gap-1 inline-flex'>
 						<BadgeIcon />
 						<div className='text-white text-sm font-bold font-ibm-mono leading-snug'>
-							{(coin.score ?? 0 / 10).toFixed(1)}
+							{((coin.score ?? 0) / 10).toFixed(1)}
 						</div>
 					</div>
 				</div>
 				<div className='self-stretch flex-col lg:flex-row flex-1 justify-start lg:items-center items-start gap-5 flex'>
 					<div className='grow shrink basis-0 flex-col justify-start items-start gap-3 inline-flex'>
 						<div className='text-purple-100 font-ibm-mono lg:hidden text-sm font-semibold'>
-							HIGHLIGHT • $${coin.ticker}
+							HIGHLIGHT • ${coin.ticker}
 						</div>
 						<h1 className='text-light-0 text-[28px] lg:text-[32px] font-bold font-barlow leading-9 truncate flex-nowrap'>
 							{coin.name}
@@ -119,8 +121,8 @@ export default function Highlight() {
 							{coin.description}
 						</p>
 					</div>
-					<div className='self-stretch justify-start mt-1 lg:mt-0 items-end gap-3 flex'>
-						<div className='justify-start items-center flex order-2 lg:order-1'>
+					<div className='lg:self-stretch justify-start mt-1 lg:mt-0 items-start lg:items-end gap-3 flex flex-row-reverse lg:flex-row'>
+						<div className='justify-start items-center flex'>
 							{socialLinks.map((link, index) => (
 								<a
 									key={index}
@@ -134,7 +136,7 @@ export default function Highlight() {
 							))}
 						</div>
 						<ButtonSecondary
-							className='h-[34px] order-1 lg:order-2'
+							className='h-[34px]'
 							onClick={() => window.open(`/${coin.ca}`, '_blank')}
 						>
 							Trade Now

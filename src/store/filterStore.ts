@@ -31,10 +31,12 @@ interface FilterState {
 	coinType: CoinType
 	devLock: DevLockDuration
 	viewMode: ViewMode
+	isLive: boolean
 	setSortBy: (sort: SortOption) => void
 	setCoinType: (type: CoinType) => void
 	setDevLock: (duration: DevLockDuration) => void
 	setViewMode: (mode: ViewMode) => void
+	toggleLive: () => void
 }
 
 export const useFilterStore = create<FilterState>(set => ({
@@ -42,8 +44,10 @@ export const useFilterStore = create<FilterState>(set => ({
 	coinType: CoinType.ALL,
 	devLock: DevLockDuration.NONE,
 	viewMode: ViewMode.GRID,
+	isLive: true,
 	setSortBy: sort => set({ sortBy: sort }),
 	setCoinType: type => set({ coinType: type }),
 	setDevLock: duration => set({ devLock: duration }),
 	setViewMode: mode => set({ viewMode: mode }),
+	toggleLive: () => set(state => ({ isLive: !state.isLive })),
 }))

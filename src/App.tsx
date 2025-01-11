@@ -3,20 +3,39 @@ import CoinDetails from '@/pages/CoinDetails'
 import CreateCoin from '@/pages/CreateCoin'
 import Home from '@/pages/Home'
 import Profile from '@/pages/Profile'
+import { WalletAdapterNetwork } from '@solana/wallet-adapter-base'
+import {
+	ConnectionProvider,
+	WalletProvider,
+} from '@solana/wallet-adapter-react'
+import { WalletModalProvider } from '@solana/wallet-adapter-react-ui'
+import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets'
+import { useMemo } from 'react'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 
-function App() {
+// Import wallet styles
+import '@solana/wallet-adapter-react-ui/styles.css'
+
+export default function App() {
+	const network = WalletAdapterNetwork.Mainnet
+	const endpoint = 'https://api.mainnet-beta.solana.com'
+	const wallets = useMemo(() => [new PhantomWalletAdapter()], [])
+
 	return (
-		<Router>
-			<Header />
-			<Routes>
-				<Route path='/' element={<Home />} />
-				<Route path='/profile' element={<Profile />} />
-				<Route path='/coin/:coinCA' element={<CoinDetails />} />
-				<Route path='/create' element={<CreateCoin />} />
-			</Routes>
-		</Router>
+		<ConnectionProvider endpoint={endpoint}>
+			<WalletProvider wallets={wallets} autoConnect>
+				<WalletModalProvider>
+					<Router>
+						<Header />
+						<Routes>
+							<Route path='/' element={<Home />} />
+							<Route path='/profile' element={<Profile />} />
+							<Route path='/coin/:coinCA' element={<CoinDetails />} />
+							<Route path='/create' element={<CreateCoin />} />
+						</Routes>
+					</Router>
+				</WalletModalProvider>
+			</WalletProvider>
+		</ConnectionProvider>
 	)
 }
-
-export default App

@@ -3,11 +3,11 @@ import CoinTabs from './CoinTabs'
 import Dropdown from './Dropdown'
 import LayoutTab from './LayoutTab'
 
-const isMobile: boolean = window.innerWidth < 768
+const isMobile: boolean = window.innerWidth < 1440
 
 export default function Filters() {
 	return (
-		<div className='flex flex-col lg:flex-row items-center mt-10 gap-6 lg:border-b lg:border-dark-700 w-full'>
+		<div className='flex z-0 flex-col -pb-[1px] lg:flex-row items-center mt-8 gap-4 lg:border-b lg:border-dark-700 w-full'>
 			<CoinTabs />
 			<div className=' lg:ml-auto self-stretch lg:mt-0 flex items-center lg:gap-6 gap-4'>
 				<Dropdown

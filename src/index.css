@@ -62,6 +62,14 @@ body {
 	fill: #ffffff;
 }
 
+.icn-red svg path[stroke] {
+	stroke: #eea1b9;
+}
+
+.icn-red svg path[fill] {
+	fill: #eea1b9;
+}
+
 .icn-white-hover:hover > svg path[stroke] {
 	stroke: #ffffff;
 }

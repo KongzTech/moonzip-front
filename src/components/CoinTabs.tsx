@@ -1,16 +1,16 @@
 import AmmIcon from '@/assets/icons/AmmIcon'
 import CardsIcon from '@/assets/icons/CardsIcon'
+import PauseIcon from '@/assets/icons/PauseIcon'
+import PlayIcon from '@/assets/icons/PlayIcon'
 import PoolIcon from '@/assets/icons/PoolIcon'
 import { CoinType, useFilterStore } from '@/store/filterStore'
 import Tab from './Tab'
 
 export default function CoinTabs() {
-	const { coinType, setCoinType } = useFilterStore()
+	const { coinType, setCoinType, isLive, toggleLive } = useFilterStore()
 
 	return (
-		<div
-			className={`h-[38px] border-b w-full lg:w-auto border-dark-700 justify-start items-center gap-6 inline-flex`}
-		>
+		<div className='h-[38px] border-b border-dark-700 lg:border-b-0  w-full lg:w-auto justify-start items-center gap-5 lg:gap-6 inline-flex'>
 			<Tab
 				active={coinType === CoinType.ALL}
 				onClick={() => setCoinType(CoinType.ALL)}
@@ -24,7 +24,7 @@ export default function CoinTabs() {
 			>
 				<PoolIcon />
 				Pools
-				<div className='px-1.5 bg-light-100 ml-1 text-dark-800 rounded justify-start items-center uppercase flex text-xs font-bold font-ibm-mono hidden lg:block'>
+				<div className='px-1.5 bg-light-100 ml-1 text-dark-800 rounded justify-start items-center uppercase text-xs font-bold font-ibm-mono hidden lg:block'>
 					Suggested
 				</div>
 			</Tab>
@@ -35,6 +35,12 @@ export default function CoinTabs() {
 				<AmmIcon />
 				AMM
 			</Tab>
+			<div
+				className='cursor-pointer ml-auto lg:ml-0 h-[38px] items-center justify-start icn-white-hover'
+				onClick={toggleLive}
+			>
+				{isLive ? <PauseIcon /> : <PlayIcon />}
+			</div>
 		</div>
 	)
 }

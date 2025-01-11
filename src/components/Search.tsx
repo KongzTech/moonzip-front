@@ -111,7 +111,7 @@ export default function Search() {
 			</div>
 
 			{isOpen && (
-				<div className='absolute z-50 w-full pt-6 px-2 md:pt-2 md:px-0 left-0'>
+				<div className='absolute z-50 w-full pt-4 px-2 md:pt-2 md:px-0 left-0'>
 					<div className='bg-dark-750 rounded-xl border border-neutral-800 shadow-lg max-h-[400px] overflow-y-auto animate-fade-in-down'>
 						{filteredCoins.length > 0 ? (
 							<div className='py-1'>

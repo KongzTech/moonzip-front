@@ -28,6 +28,9 @@ export default {
 				yellow: {
 					100: '#eed5a1',
 				},
+				red: {
+					100: '#EEA1B9',
+				},
 			},
 			keyframes: {
 				'pulse-subtle': {
