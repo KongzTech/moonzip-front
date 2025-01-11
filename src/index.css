@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+/* Remove default focus styles */
+*:focus {
+	outline: none;
+}
+
+/* Reset button styles */
+button {
+	border: none;
+	background: none;
+	padding: 0;
+	cursor: pointer;
+	font: inherit;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+body {
+	margin: 0;
+
+	background-color: #111111;
+	overflow-x: hidden;
+	width: 100%;
+	min-height: 100vh; /* Add this to ensure full height */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+#root {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	width: 100%;
+}
+
+.icn-purple svg path[stroke] {
+	stroke: #bba1ee;
+}
+
+.icn-purple svg path[fill] {
+	fill: #bba1ee;
+}
+
+.icn-white svg path[stroke] {
+	stroke: #ffffff;
+}
+
+.icn-white svg path[fill] {
+	fill: #ffffff;
+}
+
+.icn-white-hover:hover > svg path[stroke] {
+	stroke: #ffffff;
+}
+
+.icn-white-hover:hover > svg path[fill] {
+	fill: #ffffff;
+}
