@@ -27,7 +27,7 @@ const Home = () => {
 	}, [])
 
 	return (
-		<div className='flex z-0 flex-col items-center max-w-[1440px] px-4 md:px-8 w-full gap-4 mx-auto'>
+		<div className='flex z-0 flex-col pb-10 items-center max-w-[1440px] px-4 md:px-8 w-full gap-4 mx-auto'>
 			{loading ? <HighlightSkeleton /> : <Highlight />}
 			<Filters />
 			{loading ? (
