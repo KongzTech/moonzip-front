@@ -7,7 +7,7 @@ import { CoinType, useFilterStore } from '@/store/filterStore'
 import Tab from './Tab'
 
 export default function CoinTabs() {
-	const { coinType, setCoinType, isLive, toggleLive } = useFilterStore()
+	const { coinType, setCoinType, isPaused, pause, unpause } = useFilterStore()
 
 	return (
 		<div className='h-[38px] border-b border-dark-700 lg:border-b-0  w-full lg:w-auto justify-start items-center gap-5 lg:gap-6 inline-flex'>
@@ -36,10 +36,12 @@ export default function CoinTabs() {
 				AMM
 			</Tab>
 			<div
-				className='cursor-pointer ml-auto lg:ml-0 h-[38px] items-center justify-start icn-white-hover'
-				onClick={toggleLive}
+				className={`cursor-pointer ml-auto lg:ml-0 h-[38px] items-center justify-start icn-white-hover ${
+					isPaused ? 'icn-red' : ''
+				}`}
+				onClick={isPaused ? unpause : pause}
 			>
-				{isLive ? <PauseIcon /> : <PlayIcon />}
+				{isPaused ? <PauseIcon /> : <PlayIcon />}
 			</div>
 		</div>
 	)

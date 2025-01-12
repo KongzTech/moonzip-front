@@ -1,7 +1,8 @@
 import BadgeIcon from '@/assets/icons/BadgeIcon'
 import { Coin } from '@/types/coin'
+import { formatGraduation } from '@/utils/formatGraduation'
 import { formatNumber } from '@/utils/formatNumber'
-
+import { useNavigate } from 'react-router-dom'
 enum LockStatus {
 	SECURE = 'text-green-100',
 	NEUTRAL = 'text-light-100',
@@ -15,8 +16,14 @@ const getLockStatus = (lock: number | undefined): LockStatus => {
 }
 
 export default function CoinCard({ coin }: { coin: Coin }) {
+	const navigate = useNavigate()
 	return (
-		<div className='flex-1 h-[222px] p-6 bg-dark-800 rounded-[10px] border border-dark-700 flex-col text-light-100 justify-start items-start gap-6 inline-flex overflow-hidden'>
+		<div
+			className='flex-1 h-[222px] p-6 bg-dark-800 hover:bg-dark-750 hover:opacity-80 rounded-[10px] border border-dark-700 flex-col text-light-100 justify-start items-start gap-6 inline-flex overflow-hidden cursor-pointer'
+			onClick={() => {
+				navigate(`/coin/${coin.ca}`)
+			}}
+		>
 			<div className='self-stretch h-32 flex-col justify-start items-start gap-5 flex'>
 				<div className='self-stretch justify-start items-center gap-4 inline-flex'>
 					<img className='w-16 h-16 rounded-[10px]' src={coin.image} />
@@ -52,37 +59,24 @@ export default function CoinCard({ coin }: { coin: Coin }) {
 					{coin.description}
 				</div>
 			</div>
-			<div className='self-stretch justify-start items-center gap-1.5 inline-flex'>
-				<div className='grow shrink basis-0 text-light-100 text-sm font-semibold font-ibm-mono leading-snug'>
+			<div className='self-stretch justify-start items-center gap-1.5 inline-flex text-light-100 text-sm font-semibold font-ibm-mono leading-snug uppercase'>
+				<div className='grow shrink basis-0'>
 					MC: ${formatNumber(coin.mcap ?? 0)}
 				</div>
 				<div>
 					<span
 						className={`${
-							coin.type === 'AMM' ? 'text-light-100' : 'text-light-100'
-						} text-sm font-semibold font-ibm-mono leading-snug uppercase`}
+							coin.type === 'AMM' ? 'text-light-100' : 'text-green-100'
+						}`}
 					>
 						{coin.type}
 					</span>
 					<span> • </span>
-					<span
-						className={`${getLockStatus(
-							coin.lock
-						)} text-sm font-semibold font-ibm-mono leading-snug uppercase`}
-					>
+					<span className={`${getLockStatus(coin.lock)}`}>
 						{coin.lock ? coin.lock.toString() + 'D ' : 'NO '}LOCK
 					</span>
 					<span> • </span>
-					<span className='text-light-100 text-sm font-semibold font-ibm-mono leading-snug'>
-						{coin.graduation &&
-							(new Date(coin.graduation).getTime() - Date.now() > 60000
-								? `${Math.floor(
-										(new Date(coin.graduation).getTime() - Date.now()) / 60000
-								  )}m`
-								: `${Math.floor(
-										(new Date(coin.graduation).getTime() - Date.now()) / 1000
-								  )}s`)}
-					</span>
+					<span>{formatGraduation(coin.graduation)}</span>
 				</div>
 			</div>
 		</div>

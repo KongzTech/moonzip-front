@@ -2,8 +2,10 @@ import ArchiveIcon from '@/assets/icons/ArchiveIcon'
 import { sampleCoins } from '@/data/sampleCoins'
 import debounce from 'lodash/debounce'
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Input from './Input'
 import SearchItem from './SearchItem'
+
 export default function Search() {
 	const [isOpen, setIsOpen] = useState(false)
 	const [search, setSearch] = useState('')
@@ -87,12 +89,16 @@ export default function Search() {
 		return () => document.removeEventListener('mousedown', handleClickOutside)
 	}, [])
 
-	const handleCoinSelect = () => {
-		if (selectedIndex !== null && filteredCoins[selectedIndex]) {
-			console.log('Selected:', filteredCoins[selectedIndex])
+	const navigate = useNavigate()
+
+	const handleCoinSelect = (overrideIndex?: number) => {
+		const indexToUse = overrideIndex ?? selectedIndex
+		if (indexToUse !== null && filteredCoins[indexToUse]) {
+			navigate(`/coin/${filteredCoins[indexToUse].ca}`)
 			setIsOpen(false)
 			setSearch('')
 			setSelectedIndex(null)
+			inputRef.current?.blur()
 		}
 	}
 	const isMobile: boolean = window.innerWidth < 768
@@ -137,7 +143,7 @@ export default function Search() {
 									<SearchItem
 										key={coin.ticker}
 										coin={coin}
-										onClick={handleCoinSelect}
+										onClick={() => handleCoinSelect(index)}
 										isSelected={index === selectedIndex}
 									/>
 								))}

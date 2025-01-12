@@ -34,10 +34,10 @@ export default function MobileMenu({ setIsMobileMenuOpen }: MobileMenuProps) {
 			<div className='flex flex-col p-4 gap-2'>
 				<Link
 					to='/'
-					className={`flex text-light-100 flex-col items-start uppercase gap-1 p-3 rounded-lg ${
+					className={`flex  flex-col items-start uppercase gap-1 p-3 rounded-lg ${
 						currentPath === '/'
 							? 'bg-dark-700 icn-purple text-light-0'
-							: 'border border-dark-700'
+							: 'border border-dark-700 text-light-100'
 					}`}
 					onClick={() => setIsMobileMenuOpen(false)}
 				>
@@ -46,10 +46,10 @@ export default function MobileMenu({ setIsMobileMenuOpen }: MobileMenuProps) {
 				</Link>
 				<Link
 					to='/create'
-					className={`flex text-light-100 flex-col items-start gap-1 p-3 rounded-lg ${
+					className={`flex flex-col items-start gap-1 p-3 rounded-lg ${
 						currentPath === '/create'
 							? 'bg-dark-700 icn-purple text-light-0'
-							: 'border border-dark-700'
+							: 'border border-dark-700 text-light-100'
 					}`}
 					onClick={() => setIsMobileMenuOpen(false)}
 				>

@@ -1,8 +1,9 @@
 import BadgeIcon from '@/assets/icons/BadgeIcon'
 import ChevronRightIcon from '@/assets/icons/ChevronRightIcon'
 import { Coin } from '@/types/coin'
+import { formatGraduation } from '@/utils/formatGraduation'
 import { formatNumber } from '@/utils/formatNumber'
-
+import { useNavigate } from 'react-router-dom'
 enum LockStatus {
 	SECURE = 'text-green-100',
 	NEUTRAL = 'text-light-100',
@@ -17,19 +18,8 @@ const getLockStatus = (lock: number | undefined): LockStatus => {
 
 const isMobile = window.innerWidth < 768
 
-const formatGraduationTime = (graduationDate: Date | undefined): string => {
-	if (!graduationDate) return ''
-
-	const timeLeft = graduationDate.getTime() - Date.now()
-
-	if (timeLeft < 0) return 'Grad'
-
-	return timeLeft > 60000
-		? `${Math.floor(timeLeft / 60000)}m`
-		: `${Math.floor(timeLeft / 1000)}s`
-}
-
 export default function TableView({ coins }: { coins: Coin[] }) {
+	const navigate = useNavigate()
 	return (
 		<div className='w-full overflow-x-auto'>
 			<table className='w-full lg:bg-dark-700 rounded-[10px] overflow-hidden lg:border lg:border-dark-700 border-collapse'>
@@ -46,7 +36,10 @@ export default function TableView({ coins }: { coins: Coin[] }) {
 					{coins.map(coin => (
 						<tr
 							key={coin.ca}
-							className='border-t border-dark-700 bg-dark-800 text-light-100 font-ibm-mono font-semibold uppercase text-sm lg:table-row flex items-center'
+							className='!cursor-pointer first:border-t-0 lg:first:border-t border-t border-dark-700 bg-dark-800 hover:bg-dark-750 hover:opacity-80 text-light-100 font-ibm-mono font-semibold uppercase text-sm lg:table-row flex items-center'
+							onClick={() => {
+								navigate(`/coin/${coin.ca}`)
+							}}
 						>
 							<td className='pr-2 lg:px-4 py-5 flex-1 lg:py-3 '>
 								<div className='flex items-center  gap-2.5 lg:gap-4'>
@@ -127,7 +120,7 @@ export default function TableView({ coins }: { coins: Coin[] }) {
 										</span>
 									</div>
 									<div className='flex-1'>
-										{formatGraduationTime(coin.graduation)}
+										{formatGraduation(coin.graduation)}
 									</div>
 									<ChevronRightIcon className='hidden lg:block' />
 								</div>

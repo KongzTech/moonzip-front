@@ -9,7 +9,7 @@ import { sampleCoins } from '@/data/sampleCoins'
 import { Coin } from '@/types/coin'
 import { formatNumber } from '@/utils/formatNumber'
 import { useEffect, useState } from 'react'
-
+import { useNavigate } from 'react-router-dom'
 const coin: Coin = sampleCoins[0]
 
 type SocialLink = {
@@ -64,6 +64,7 @@ export default function Highlight() {
 
 		return () => clearInterval(timer)
 	}, [coin.graduation])
+	const navigate = useNavigate()
 
 	return (
 		<div className='w-full flex flex-col items-center justify-center'>
@@ -137,7 +138,7 @@ export default function Highlight() {
 						</div>
 						<ButtonSecondary
 							className='h-[42px] px-6 lg:h-[34px] lg:px-3'
-							onClick={() => window.open(`/${coin.ca}`, '_blank')}
+							onClick={() => navigate(`/coin/${coin.ca}`)}
 						>
 							Trade Now
 						</ButtonSecondary>

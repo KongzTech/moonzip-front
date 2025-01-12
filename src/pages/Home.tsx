@@ -12,6 +12,9 @@ const Home = () => {
 	const [loading, setLoading] = useState(true)
 	const [coins, setCoins] = useState<typeof sampleCoins>([])
 	const viewMode = useFilterStore(state => state.viewMode)
+	const { pause, unpause } = useFilterStore()
+
+	const isMobile = window.innerWidth < 768
 
 	useEffect(() => {
 		// Simulate loading delay
@@ -24,7 +27,7 @@ const Home = () => {
 	}, [])
 
 	return (
-		<div className='flex flex-col items-center max-w-[1440px] px-4 md:px-8 w-full gap-4 mx-auto'>
+		<div className='flex z-0 flex-col items-center max-w-[1440px] px-4 md:px-8 w-full gap-4 mx-auto'>
 			{loading ? <HighlightSkeleton /> : <Highlight />}
 			<Filters />
 			{loading ? (
@@ -36,13 +39,27 @@ const Home = () => {
 						))}
 				</div>
 			) : viewMode === ViewMode.GRID ? (
-				<div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 w-full'>
+				<div
+					className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 w-full'
+					{...(!isMobile && {
+						onMouseEnter: pause,
+						onMouseLeave: unpause,
+					})}
+				>
 					{coins.map(coin => (
 						<CoinCard key={coin.ca} coin={coin} />
 					))}
 				</div>
 			) : (
-				<TableView coins={coins} />
+				<div
+					className='w-full'
+					{...(!isMobile && {
+						onMouseEnter: pause,
+						onMouseLeave: unpause,
+					})}
+				>
+					<TableView coins={coins} />
+				</div>
 			)}
 		</div>
 	)
