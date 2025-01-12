@@ -59,7 +59,7 @@ export default function Header() {
 	}, [])
 
 	return (
-		<div className='w-full sticky md:static top-0 px-4 md:px-8 py-2 md:py-4 border-b border-neutral-800 bg-dark-800 z-20 items-center justify-center flex'>
+		<div className='w-full sticky md:static top-0 px-4 md:px-8 py-2.5 md:py-4 border-b border-neutral-800 bg-dark-800 z-20 items-center justify-center flex'>
 			<div className='flex items-center gap-2 md:gap-4 w-full max-w-[1376px] justify-between'>
 				<div className='justify-start items-center gap-6 flex'>
 					<Link to='/' className='justify-start items-center gap-2 flex'>
@@ -122,7 +122,7 @@ export default function Header() {
 					</div>
 				) : (
 					<Button
-						className='w-[38px] !px-0 md:!px-3 md:w-auto'
+						className='w-[30px] !px-0 md:!px-3 md:w-auto'
 						onClick={() => setVisible(true)}
 					>
 						<WalletIcon />

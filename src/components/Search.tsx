@@ -1,21 +1,30 @@
+import ArchiveIcon from '@/assets/icons/ArchiveIcon'
 import { sampleCoins } from '@/data/sampleCoins'
-import { useEffect, useRef, useState } from 'react'
+import debounce from 'lodash/debounce'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import Input from './Input'
 import SearchItem from './SearchItem'
-
 export default function Search() {
 	const [isOpen, setIsOpen] = useState(false)
 	const [search, setSearch] = useState('')
+	const [debouncedSearch, setDebouncedSearch] = useState('')
 	const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
 	const dropdownRef = useRef<HTMLDivElement>(null)
 	const inputRef = useRef<HTMLInputElement>(null)
 
-	const filteredCoins = search
+	const debouncedSetSearch = useCallback(
+		debounce((value: string) => {
+			setDebouncedSearch(value)
+		}, 300),
+		[]
+	)
+
+	const filteredCoins = debouncedSearch
 		? sampleCoins
 				.filter(
 					coin =>
-						coin.name.toLowerCase().includes(search.toLowerCase()) ||
-						coin.ticker.toLowerCase().includes(search.toLowerCase())
+						coin.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+						coin.ticker.toLowerCase().includes(debouncedSearch.toLowerCase())
 				)
 				.slice(0, 5)
 		: sampleCoins.slice(0, 5)
@@ -96,6 +105,7 @@ export default function Search() {
 					value={search}
 					onChange={e => {
 						setSearch(e.target.value)
+						debouncedSetSearch(e.target.value)
 						setIsOpen(true)
 						setSelectedIndex(null)
 					}}
@@ -111,7 +121,7 @@ export default function Search() {
 			</div>
 
 			{isOpen && (
-				<div className='absolute z-50 w-full pt-4 px-2 md:pt-2 md:px-0 left-0'>
+				<div className='absolute z-50 bg-dark-800 w-full pt-[10px] px-2 md:pt-2 md:px-0 left-0'>
 					<div className='bg-dark-750 rounded-xl border border-neutral-800 shadow-lg max-h-[400px] overflow-y-auto animate-fade-in-down'>
 						{filteredCoins.length > 0 ? (
 							<div className='py-1'>
@@ -133,8 +143,9 @@ export default function Search() {
 								))}
 							</div>
 						) : (
-							<div className='px-4 py-3 text-light-100 text-sm'>
-								No results found
+							<div className='px-4 py-3 text-light-100 opacity-60 font-ibm-mono text-sm flex items-center justify-center flex-col my-3 uppercase font-semibold gap-2'>
+								<ArchiveIcon className='' />
+								No coins found
 							</div>
 						)}
 					</div>

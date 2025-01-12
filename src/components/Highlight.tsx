@@ -67,7 +67,7 @@ export default function Highlight() {
 
 	return (
 		<div className='w-full flex flex-col items-center justify-center'>
-			<div className='mt-8 w-full justify-between font-ibm-mono text-sm font-semibold items-start inline-flex'>
+			<div className='mt-5 lg:mt-8 w-full justify-between font-ibm-mono text-sm font-semibold items-start inline-flex'>
 				<div className='text-purple-100 hidden lg:block'>
 					HIGHLIGHT • ${coin.ticker}
 				</div>
@@ -90,7 +90,7 @@ export default function Highlight() {
 					</div>
 				</div>
 			</div>
-			<div className='px-0 lg:px-4 relative w-full mt-8 lg:mt-5 justify-start items-start gap-7 flex flex-col lg:flex-row'>
+			<div className='px-0 lg:px-4 relative w-full mt-8 lg:mt-5 justify-start items-center lg:items-start gap-7 flex flex-col lg:flex-row'>
 				<img
 					className='absolute hidden lg:block w-[160px] h-[160px] -z-10 -left-[12px] -top-[28px]'
 					src={coinGlow}
@@ -101,7 +101,7 @@ export default function Highlight() {
 						src={coin.image}
 					/>
 				</div>
-				<div className='absolute lg:top-20 lg:left-12 max-w-fit right-0 flex bg-gradient-to-b from-[#8769de]/30 to-[#8769de]/0 p-[1px] rounded-[32px]'>
+				<div className='absolute top-16 lg:top-20 lg:left-12 max-w-fit right-1/2 translate-x-1/2 lg:right-0 lg:translate-x-0 flex bg-gradient-to-b from-[#8769de]/30 to-[#8769de]/0 p-[1px] rounded-[32px]'>
 					<div className='h-8 px-2.5 py-1 bg-gradient-to-b from-[#28174d] to-[#351c69] rounded-[31px] icn-white justify-start items-center gap-1 inline-flex'>
 						<BadgeIcon />
 						<div className='text-white text-sm font-bold font-ibm-mono leading-snug'>
@@ -109,20 +109,20 @@ export default function Highlight() {
 						</div>
 					</div>
 				</div>
-				<div className='self-stretch flex-col lg:flex-row flex-1 justify-start lg:items-center items-start gap-5 flex'>
-					<div className='grow shrink basis-0 flex-col justify-start items-start gap-3 inline-flex'>
+				<div className='self-stretch mt-2 flex-col lg:flex-row flex-1 lg:items-center items-center  gap-4 flex'>
+					<div className='grow shrink basis-0 flex-col justify-start items-center lg:items-start gap-2 inline-flex'>
 						<div className='text-purple-100 font-ibm-mono lg:hidden text-sm font-semibold'>
 							HIGHLIGHT • ${coin.ticker}
 						</div>
 						<h1 className='text-light-0 text-[28px] lg:text-[32px] font-bold font-barlow leading-9 truncate flex-nowrap'>
 							{coin.name}
 						</h1>
-						<p className='lg:w-[296px] w-full text-light-100 text-sm font-medium font-ibm-sans mt-1 leading-snug line-clamp-2'>
+						<p className='max-w-[320px] w-full text-light-100 text-sm font-medium font-ibm-sans text-center lg:text-left mt-1 leading-snug line-clamp-2'>
 							{coin.description}
 						</p>
 					</div>
 					<div className='lg:self-stretch justify-start mt-1 lg:mt-0 items-start lg:items-end gap-3 flex flex-row-reverse lg:flex-row'>
-						<div className='justify-start items-center flex'>
+						<div className='justify-start absolute top-0 right-0 lg:relative items-center flex'>
 							{socialLinks.map((link, index) => (
 								<a
 									key={index}
@@ -136,7 +136,7 @@ export default function Highlight() {
 							))}
 						</div>
 						<ButtonSecondary
-							className='h-[34px]'
+							className='h-[42px] px-6 lg:h-[34px]'
 							onClick={() => window.open(`/${coin.ca}`, '_blank')}
 						>
 							Trade Now
