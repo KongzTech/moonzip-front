@@ -109,12 +109,12 @@ export default function Highlight() {
 						</div>
 					</div>
 				</div>
-				<div className='self-stretch mt-2 flex-col lg:flex-row flex-1 lg:items-center items-center  gap-4 flex'>
+				<div className='self-stretch mt-2 lg:mt-0 flex-col lg:flex-row flex-1 lg:items-center items-center  gap-4 flex'>
 					<div className='grow shrink basis-0 flex-col justify-start items-center lg:items-start gap-2 inline-flex'>
 						<div className='text-purple-100 font-ibm-mono lg:hidden text-sm font-semibold'>
 							HIGHLIGHT • ${coin.ticker}
 						</div>
-						<h1 className='text-light-0 text-[28px] lg:text-[32px] font-bold font-barlow leading-9 truncate flex-nowrap'>
+						<h1 className='text-light-0 text-[26px] lg:text-[28px] font-bold font-barlow leading-9 truncate flex-nowrap'>
 							{coin.name}
 						</h1>
 						<p className='max-w-[320px] w-full text-light-100 text-sm font-medium font-ibm-sans text-center lg:text-left mt-1 leading-snug line-clamp-2'>
@@ -136,7 +136,7 @@ export default function Highlight() {
 							))}
 						</div>
 						<ButtonSecondary
-							className='h-[42px] px-6 lg:h-[34px]'
+							className='h-[42px] px-6 lg:h-[34px] lg:px-3'
 							onClick={() => window.open(`/${coin.ca}`, '_blank')}
 						>
 							Trade Now
