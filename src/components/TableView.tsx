@@ -31,7 +31,7 @@ const formatGraduationTime = (graduationDate: Date | undefined): string => {
 export default function TableView({ coins }: { coins: Coin[] }) {
 	return (
 		<div className='w-full overflow-x-auto'>
-			<table className='w-full bg-dark-700 rounded-[10px] border border-dark-700 border-collapse'>
+			<table className='w-full bg-dark-700 rounded-[10px] overflow-hidden border border-dark-700 border-collapse'>
 				<thead className='bg-dark-800 hidden lg:table-header-group w-full rounded-t-[10px]'>
 					<tr className='text-left text-sm font-ibm-mono uppercase text-light-100'>
 						<th className='px-4 py-3'>Token</th>
@@ -48,7 +48,7 @@ export default function TableView({ coins }: { coins: Coin[] }) {
 							className='border-t border-dark-700 bg-dark-800 text-light-100 font-ibm-mono font-semibold uppercase text-sm'
 						>
 							<td className='px-4 py-4 lg:py-3 '>
-								<div className='flex items-center  gap-4'>
+								<div className='flex items-center  gap-2.5 lg:gap-4'>
 									<div
 										className={` w-[62px] hidden lg:flex items-center gap-1 ${
 											coin.score === 100 ? 'icn-purple' : ''
@@ -66,32 +66,30 @@ export default function TableView({ coins }: { coins: Coin[] }) {
 										</span>
 									</div>
 									<img
-										className='w-9 h-9 rounded-[10px]'
+										className='w-8 h-8 lg:w-9 lg:h-9 rounded-[10px]'
 										src={coin.image}
 										alt={coin.name}
 									/>
-									<div className='flex flex-col lg:flex-row gap-2'>
-										<div className='text-light-0 capitalize truncate max-w-[80px]'>
+									<div className='flex flex-col lg:flex-row gap-1 lg:gap-2 max-w-[80px] lg:max-w-[400px] overflow-hidden'>
+										<div className='text-light-0 capitalize truncate '>
 											{coin.name}
 										</div>
-										<span className='text-sm truncate'>${coin.ticker}</span>
+										<span className='lg:text-sm truncate text-xs'>
+											${coin.ticker}
+										</span>
 									</div>
 								</div>
 							</td>
 							<td className='px-3 py-3'>
-								<div className='flex flex-col lg:flex-row gap-2'>
+								<div className='flex flex-col text-xs lg:text-sm lg:flex-row gap-1'>
 									<div>
 										{isMobile
 											? 'MC: $' + formatNumber(coin.mcap ?? 0)
 											: '$' + formatNumber(coin.mcap ?? 0)}
 									</div>
-									<div className='lg:hidden flex gap-2'>
+									<div className='lg:hidden flex gap-1'>
 										<div>{coin.type}</div>•
-										<div
-											className={` ${getLockStatus(
-												coin.lock
-											)} text-sm font-semibold font-ibm-mono`}
-										>
+										<div className={` ${getLockStatus(coin.lock)}`}>
 											{coin.lock ? coin.lock.toString() + 'D ' : 'NO '}
 										</div>
 									</div>
@@ -109,24 +107,22 @@ export default function TableView({ coins }: { coins: Coin[] }) {
 									{coin.lock ? coin.lock.toString() + 'D ' : 'NO '}
 								</div>
 							</td>
-							<td className='p-4 flex flex-col gap-2'>
+							<td className='p-4 flex flex-col text-xs lg:text-sm gap-1'>
 								<div
-									className={` w-[62px] flex lg:hidden items-center gap-1 ${
+									className={` w-[62px] flex lg:hidden items-center ${
 										coin.score === 100 ? 'icn-purple' : ''
 									}`}
 								>
-									<BadgeIcon />
+									<BadgeIcon className='scale-75' />
 									<span
 										className={`${
 											coin.score === 100 ? 'text-purple-100' : 'text-light-100'
-										} text-sm font-semibold`}
+										} `}
 									>
 										{coin.score ? (coin.score / 10).toFixed(1) : '0.0'}
 									</span>
 								</div>
-								<div className='text-light-100 text-sm font-semibold font-ibm-mono'>
-									{formatGraduationTime(coin.graduation)}
-								</div>
+								<div>{formatGraduationTime(coin.graduation)}</div>
 							</td>
 						</tr>
 					))}
