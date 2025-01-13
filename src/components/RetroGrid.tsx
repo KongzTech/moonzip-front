@@ -21,7 +21,7 @@ export function RetroGrid({
 			}
 		>
 			{/* Grid */}
-			<div className='absolute -top-[200px] inset-0 [transform:rotateX(var(--grid-angle))]'>
+			<div className='absolute -top-[200px] inset-0 [transform:rotateX(var(--grid-angle))] will-change-transform'>
 				<div
 					className='
             absolute
@@ -30,15 +30,16 @@ export function RetroGrid({
             [height:130%]
             [width:150%]
             [-left:50%]
-            [-top:90%]
-            [transform:perspective(1000px)]
+            [-top:35%]
+            [transform:translate3d(0,0,0)]
+            will-change-transform
             [background-image:linear-gradient(to_right,rgba(0,0,0,0.15)_1px,transparent_0),linear-gradient(to_bottom,rgba(0,0,0,0.15)_1px,transparent_0)]
             dark:[background-image:linear-gradient(to_right,rgba(255,255,255,0.08)_1px,transparent_0),linear-gradient(to_bottom,rgba(255,255,255,0.08)_1px,transparent_0)]
           '
 				/>
 			</div>
 
-			{/* Fade overlay - added stronger fade at top */}
+			{/* Fade overlay */}
 			<div className='absolute inset-0 bg-gradient-to-t from-light-100 via-light-100/60 to-light-100/90 dark:from-[#111111] dark:via-[#111111]/60 dark:to-[#111111]/90' />
 		</div>
 	)
