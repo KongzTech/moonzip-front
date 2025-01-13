@@ -122,7 +122,7 @@ export default function Header() {
 					</div>
 				) : (
 					<Button
-						className='w-[30px] !px-0 md:!px-3 md:w-auto'
+						className='!w-[30px] !px-0 md:!px-3 md:w-auto'
 						onClick={() => setVisible(true)}
 					>
 						<WalletIcon />
