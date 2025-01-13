@@ -41,8 +41,12 @@ export default function TableView({ coins }: { coins: Coin[] }) {
 								key={coin.ca}
 								initial={{ backgroundColor: 'rgb(147, 51, 234)', opacity: 0.7 }}
 								animate={{ backgroundColor: 'rgb(17, 17, 17)', opacity: 1 }}
+								whileHover={{
+									backgroundColor: 'rgb(26, 26, 26)',
+									opacity: 0.8,
+								}}
 								transition={{ duration: 0.3 }}
-								className='!cursor-pointer first:border-t-0 lg:first:border-t border-t border-dark-700 hover:bg-dark-750 hover:opacity-80 text-light-100 font-ibm-mono font-semibold uppercase text-sm lg:table-row flex items-center'
+								className='!cursor-pointer first:border-t-0 lg:first:border-t border-t border-dark-700 text-light-100 font-ibm-mono font-semibold uppercase text-sm lg:table-row flex items-center'
 								onClick={() => navigate(`/coin/${coin.ca}`)}
 							>
 								<td className='pr-2 lg:px-4 py-5 flex-1 lg:py-3 '>
