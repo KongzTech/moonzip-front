@@ -20,8 +20,27 @@ const getLockStatus = (lock: number | undefined): LockStatus => {
 
 const isMobile = window.innerWidth < 768
 
+// Keep track of both seen coins and the last set of coins we received
+const seenCoins = new Set<string>()
+let lastCoinsLength = 0
+
 export default function TableView({ coins }: { coins: Coin[] }) {
 	const navigate = useNavigate()
+
+	// Reset seenCoins if we get a completely different set of coins
+	if (coins.length < lastCoinsLength) {
+		seenCoins.clear()
+	}
+	lastCoinsLength = coins.length
+
+	const isNewCoin = (ca: string) => {
+		if (seenCoins.has(ca)) {
+			return false
+		}
+		seenCoins.add(ca)
+		return true
+	}
+
 	return (
 		<div className='w-full overflow-x-auto'>
 			<table className='w-full lg:bg-dark-700 lg:rounded-[10px] overflow-hidden lg:border lg:border-dark-700 border-collapse'>
@@ -39,7 +58,14 @@ export default function TableView({ coins }: { coins: Coin[] }) {
 						{coins.map(coin => (
 							<motion.tr
 								key={coin.ca}
-								initial={{ backgroundColor: 'rgb(147, 51, 234)', opacity: 0.7 }}
+								initial={
+									isNewCoin(coin.ca)
+										? {
+												backgroundColor: 'rgb(147, 51, 234)',
+												opacity: 0.7,
+										  }
+										: false
+								}
 								animate={{ backgroundColor: 'rgb(17, 17, 17)', opacity: 1 }}
 								transition={{ duration: 0.3 }}
 								className='!cursor-pointer first:border-t-0 lg:first:border-t border-t border-dark-700 hover:bg-dark-750 hover:opacity-80 text-light-100 font-ibm-mono font-semibold uppercase text-sm lg:table-row flex items-center'

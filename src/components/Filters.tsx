@@ -37,14 +37,14 @@ export default function Filters() {
 		<>
 			<div
 				ref={stickyRef}
-				className={`sticky top-[59px] md:top-[71px] px-4 lg:px-8 z-20 bg-dark-900 bg-dark-800 border-b w-screen transition-shadow duration-200 ${
+				className={`sticky top-[59px] md:top-[71px] px-4 lg:px-8  z-20 bg-dark-900 bg-dark-800 border-b w-screen transition-shadow duration-200 ${
 					isSticky
 						? 'shadow-[0_4px_12px_rgba(0,0,0,0.3)]  border-dark-700'
 						: 'border-dark-800'
 				}`}
 			>
 				<div
-					className={`relative max-w-[1440px] w-full lg:border-b ${
+					className={`relative max-w-[1376px] w-full lg:border-b mx-auto ${
 						isSticky ? 'border-dark-800' : 'border-dark-700'
 					}`}
 				>
