@@ -1,7 +1,7 @@
 export function RetroGrid({
 	className,
 	angle = 55,
-	height = '320px',
+	height = '240px',
 	width = '100%',
 }: {
 	className?: string
@@ -21,7 +21,7 @@ export function RetroGrid({
 			}
 		>
 			{/* Grid */}
-			<div className='absolute -top-[200px] inset-0 [transform:rotateX(var(--grid-angle))] will-change-transform'>
+			<div className='absolute -top-[280px] inset-0 [transform:rotateX(var(--grid-angle))] will-change-transform'>
 				<div
 					className='
             absolute
@@ -30,7 +30,7 @@ export function RetroGrid({
             [height:130%]
             [width:150%]
             [-left:50%]
-            [-top:35%]
+            [-top:85%]
             [transform:translate3d(0,0,0)]
             will-change-transform
             [background-image:linear-gradient(to_right,rgba(0,0,0,0.15)_1px,transparent_0),linear-gradient(to_bottom,rgba(0,0,0,0.15)_1px,transparent_0)]
@@ -39,8 +39,10 @@ export function RetroGrid({
 				/>
 			</div>
 
-			{/* Fade overlay */}
-			<div className='absolute inset-0 bg-gradient-to-t from-light-100 via-light-100/60 to-light-100/90 dark:from-[#111111] dark:via-[#111111]/60 dark:to-[#111111]/90' />
+			{/* Fade overlay - thinned top gradient */}
+			<div className='absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,var(--bg-color)_98%)] dark:[--bg-color:#111111] [--bg-color:#ffffff]'>
+				<div className='absolute inset-0 bg-gradient-to-t from-light-100 from-5% via-light-100/30 via-30% to-light-100/90 to-100% dark:from-[#111111] dark:via-[#111111]/30 dark:to-[#111111]/90' />
+			</div>
 		</div>
 	)
 }
