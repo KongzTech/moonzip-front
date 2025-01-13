@@ -1,7 +1,7 @@
 export default function HighlightSkeleton() {
 	return (
 		<div className='w-full flex flex-col items-center justify-center animate-pulse'>
-			<div className='mt-5 lg:mt-8 w-full justify-between font-ibm-mono text-sm font-semibold items-start inline-flex'>
+			<div className='mt-[22px] lg:mt-8 w-full justify-between font-ibm-mono text-sm font-semibold items-start inline-flex'>
 				<div className='text-purple-100 hidden lg:block w-48 h-[18px] bg-dark-700 rounded' />
 				<div className='justify-start items-center gap-4 w-full lg:w-auto lg:gap-6 flex'>
 					<div className='w-32 h-[18px] bg-dark-700 rounded' />
@@ -14,7 +14,7 @@ export default function HighlightSkeleton() {
 					<div className='w-[80px] h-[80px] lg:w-[104px] lg:h-[104px] rounded-[10px] bg-dark-700' />
 				</div>
 
-				<div className='self-stretch mt-2 lg:mt-0 flex-col lg:flex-row flex-1 lg:items-center items-center gap-4 flex'>
+				<div className='self-stretch mt-2.5 lg:mt-0 flex-col lg:flex-row flex-1 lg:items-center items-center gap-4 flex'>
 					<div className='grow shrink basis-0 flex-col justify-start items-center lg:items-start gap-2 inline-flex'>
 						<div className='lg:hidden w-48 h-[18px] bg-dark-700 rounded' />
 						<div className='w-64 h-[34px] bg-dark-700 rounded' />
