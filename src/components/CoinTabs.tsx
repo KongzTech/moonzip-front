@@ -14,7 +14,7 @@ export default function CoinTabs() {
 		explicitlyPause,
 		explicitlyUnpause,
 	} = useFilterStore()
-
+	const isMobile = window.innerWidth < 768
 	return (
 		<div className='h-[38px] border-b border-dark-700 lg:border-b-0  w-full lg:w-auto justify-start items-center gap-5 lg:gap-6 inline-flex'>
 			<Tab
@@ -42,9 +42,9 @@ export default function CoinTabs() {
 				AMM
 			</Tab>
 			<div
-				className={`cursor-pointer ml-auto lg:ml-0 h-[38px] items-center justify-start md:icn-white-hover ${
-					isPaused ? 'icn-red' : ''
-				}`}
+				className={`cursor-pointer ml-auto lg:ml-0 h-[38px] items-center justify-start ${
+					isMobile ? '' : 'icn-white-hover'
+				} ${isPaused ? 'icn-red' : ''}`}
 				onClick={isPaused ? explicitlyUnpause : explicitlyPause}
 			>
 				{isPaused ? <PauseIcon /> : <PlayIcon />}
