@@ -1,4 +1,5 @@
 import Header from '@/components/Header'
+import ModalManager from '@/components/modals/ModalManager'
 import CoinDetails from '@/pages/CoinDetails'
 import CreateCoin from '@/pages/CreateCoin'
 import Home from '@/pages/Home'
@@ -24,6 +25,7 @@ export default function App() {
 			<WalletProvider wallets={wallets} autoConnect>
 				<WalletModalProvider>
 					<Router>
+						<ModalManager />
 						<Header />
 						<Routes>
 							<Route path='/' element={<Home />} />

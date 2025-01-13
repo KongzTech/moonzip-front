@@ -5,6 +5,7 @@ import MenuIcon from '@/assets/icons/MenuIcon'
 import ProfileIcon from '@/assets/icons/ProfileIcon'
 import RocketIcon from '@/assets/icons/RocketIcon'
 import WalletIcon from '@/assets/icons/WalletIcon'
+import { useModalStore } from '@/store/modalStore'
 import { useConnection, useWallet } from '@solana/wallet-adapter-react'
 import { useWalletModal } from '@solana/wallet-adapter-react-ui'
 import { LAMPORTS_PER_SOL } from '@solana/web3.js'
@@ -26,6 +27,7 @@ export default function Header() {
 	const currentPath = location.pathname
 	const [isWalletOpen, setIsWalletOpen] = useState(false)
 	const walletDropdownRef = useRef<HTMLDivElement>(null)
+	const openModal = useModalStore(state => state.openModal)
 
 	useEffect(() => {
 		const getBalance = async () => {
@@ -96,14 +98,16 @@ export default function Header() {
 							<div className='absolute right-0 z-50 pt-2'>
 								<div className='bg-dark-750 rounded-xl border border-neutral-800 shadow-lg overflow-hidden animate-fade-in-down min-w-[200px] whitespace-nowrap'>
 									<div className='py-1'>
-										<Link
-											to='/profile'
+										<div
 											className='text-light-100 mx-1 hover:bg-dark-700 rounded-lg flex cursor-pointer items-center gap-1 text-sm font-ibm-mono font-semibold uppercase px-3 py-[7px] transition-opacity'
-											onClick={() => setIsWalletOpen(false)}
+											onClick={() => {
+												openModal('profile')
+												setIsWalletOpen(false)
+											}}
 										>
 											<ProfileIcon />
 											Your Profile
-										</Link>
+										</div>
 
 										<div
 											className='text-red-100 mx-1 hover:bg-dark-700 rounded-lg flex cursor-pointer items-center gap-1 text-sm font-ibm-mono uppercase font-semibold px-3 py-[7px] transition-opacity'
@@ -122,11 +126,14 @@ export default function Header() {
 					</div>
 				) : (
 					<Button
-						className='!w-[30px] !px-0 md:!px-3 md:w-auto'
+						className='!w-[38px] md:!w-auto'
 						onClick={() => setVisible(true)}
 					>
-						<WalletIcon />
-						<div className='md:block hidden'>Connect Wallet</div>
+						<div className='!px-0 flex gap-1 items-center md:!px-3'>
+							<WalletIcon />
+							<div className='md:block hidden'>Connect </div>
+							<div className='lg:block hidden ml-[1px]'>Wallet </div>
+						</div>
 					</Button>
 				)}
 				<button

@@ -12,7 +12,7 @@ const Home = () => {
 	const [loading, setLoading] = useState(true)
 	const [coins, setCoins] = useState<typeof sampleCoins>([])
 	const viewMode = useFilterStore(state => state.viewMode)
-	const { pause, unpause } = useFilterStore()
+	const { pause, unpause, explicitlyPaused } = useFilterStore()
 
 	const isMobile = window.innerWidth < 768
 
@@ -41,10 +41,11 @@ const Home = () => {
 			) : viewMode === ViewMode.GRID ? (
 				<div
 					className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 w-full'
-					{...(!isMobile && {
-						onMouseEnter: pause,
-						onMouseLeave: unpause,
-					})}
+					{...(!isMobile &&
+						!explicitlyPaused && {
+							onMouseEnter: pause,
+							onMouseLeave: unpause,
+						})}
 				>
 					{coins.map(coin => (
 						<CoinCard key={coin.ca} coin={coin} />
@@ -53,10 +54,11 @@ const Home = () => {
 			) : (
 				<div
 					className='w-full'
-					{...(!isMobile && {
-						onMouseEnter: pause,
-						onMouseLeave: unpause,
-					})}
+					{...(!isMobile &&
+						!explicitlyPaused && {
+							onMouseEnter: pause,
+							onMouseLeave: unpause,
+						})}
 				>
 					<TableView coins={coins} />
 				</div>

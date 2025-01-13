@@ -1,3 +1,4 @@
+import ChevronLeftIcon from '@/assets/icons/ChevronLeftIcon'
 import ChevronRightIcon from '@/assets/icons/ChevronRightIcon'
 import CloseIcon from '@/assets/icons/CloseIcon'
 import PFPPlaceholderIcon from '@/assets/icons/PFPPlaceholderIcon'
@@ -30,14 +31,20 @@ export default function ProfileModal() {
 				>
 					<CloseIcon />
 				</button>
+				<button
+					onClick={() => openModal('profile')}
+					className='absolute left-6 top-6 text-light-100 icn-white-hover'
+				>
+					<ChevronLeftIcon />
+				</button>
 
 				{/* Content */}
 				<div className='w-full text-center mb-6'>
 					<h2 className='text-light-0 text-xl font-bold font-barlow mb-3'>
-						Profile
+						Profile Picture
 					</h2>
 					<p className='text-light-100 text-sm font-medium font-ibm-sans'>
-						Set up your profile so everyone knows who's winning
+						Choose your pfp wisely, anon
 					</p>
 				</div>
 
@@ -61,10 +68,7 @@ export default function ProfileModal() {
 						<label className='text-light-100 text-sm font-semibold font-ibm-mono uppercase'>
 							Selected pfp
 						</label>
-						<div
-							className='w-full p-4 border hover:opacity-80 hover:bg-dark-750 cursor-pointer border-dark-700 flex items-center gap-3 rounded-xl mb-6'
-							onClick={() => openModal('pfp')}
-						>
+						<div className='w-full p-4 border hover:opacity-80 hover:bg-dark-750 cursor-pointer border-dark-700 flex items-center gap-3 rounded-xl mb-6'>
 							<PFPPlaceholderIcon />
 							<div className='text-light-100 flex-1 text-sm font-medium font-ibm-sans flex flex-col gap-0.5'>
 								Undeads

@@ -33,6 +33,7 @@ interface FilterState {
 	viewMode: ViewMode
 
 	isPaused: boolean
+	explicitlyPaused: boolean
 	setSortBy: (sort: SortOption) => void
 	setCoinType: (type: CoinType) => void
 	setDevLock: (duration: DevLockDuration) => void
@@ -40,6 +41,8 @@ interface FilterState {
 
 	pause: () => void
 	unpause: () => void
+	explicitlyPause: () => void
+	explicitlyUnpause: () => void
 }
 
 export const useFilterStore = create<FilterState>(set => ({
@@ -49,6 +52,7 @@ export const useFilterStore = create<FilterState>(set => ({
 	viewMode: ViewMode.GRID,
 	isLive: true,
 	isPaused: false,
+	explicitlyPaused: false,
 	setSortBy: sort => set({ sortBy: sort }),
 	setCoinType: type => set({ coinType: type }),
 	setDevLock: duration => set({ devLock: duration }),
@@ -56,4 +60,6 @@ export const useFilterStore = create<FilterState>(set => ({
 
 	pause: () => set({ isPaused: true }),
 	unpause: () => set({ isPaused: false }),
+	explicitlyPause: () => set({ isPaused: true, explicitlyPaused: true }),
+	explicitlyUnpause: () => set({ isPaused: false, explicitlyPaused: false }),
 }))
