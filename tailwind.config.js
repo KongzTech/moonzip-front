@@ -111,6 +111,10 @@ export default {
 						transform: 'translateY(0)',
 					},
 				},
+				grid: {
+					'0%': { transform: 'translateY(0)' },
+					'100%': { transform: 'translateY(40px)' },
+				},
 			},
 			animation: {
 				'pulse-subtle': 'pulse-subtle 2s ease-in-out infinite',
@@ -126,6 +130,7 @@ export default {
 				'scale-x': 'scale-x 0.5s ease-out forwards',
 				'fade-in-down': 'fade-in-down 0.2s ease-out',
 				'fade-in-up': 'fade-in-up 0.2s ease-out',
+				grid: 'grid 3s linear infinite',
 			},
 		},
 	},

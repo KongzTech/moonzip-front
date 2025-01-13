@@ -19,14 +19,17 @@ export default function CoinCard({ coin }: { coin: Coin }) {
 	const navigate = useNavigate()
 	return (
 		<div
-			className='flex-1 h-[222px] p-6 bg-dark-800 hover:bg-dark-750 hover:opacity-80 rounded-[10px] border border-dark-700 flex-col text-light-100 justify-start items-start gap-6 inline-flex overflow-hidden cursor-pointer'
+			className='flex-1 h-[222px] p-6 bg-dark-800 hover:bg-dark-750 hover:opacity-90 rounded-[10px] hover:scale-[0.995] border border-dark-700 flex-col text-light-100 justify-start items-start gap-6 inline-flex overflow-hidden cursor-pointer group transition-all duration-200 ease-out active:scale-[0.98] active:opacity-80'
 			onClick={() => {
 				navigate(`/coin/${coin.ca}`)
 			}}
 		>
 			<div className='self-stretch h-32 flex-col justify-start items-start gap-5 flex'>
 				<div className='self-stretch justify-start items-center gap-4 inline-flex'>
-					<img className='w-16 h-16 rounded-[10px]' src={coin.image} />
+					<img
+						className='w-16 h-16 rounded-[10px] transition-all duration-200 ease-out group-hover:scale-[0.96] group-active:scale-[0.9]'
+						src={coin.image}
+					/>
 
 					<div className='flex-1 flex-col justify-start items-start gap-1 flex'>
 						<div

@@ -10,6 +10,7 @@ import { Coin } from '@/types/coin'
 import { formatNumber } from '@/utils/formatNumber'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { RetroGrid } from './RetroGrid'
 const coin: Coin = sampleCoins[0]
 
 type SocialLink = {
@@ -67,7 +68,8 @@ export default function Highlight() {
 	const navigate = useNavigate()
 
 	return (
-		<div className='w-full flex flex-col items-center justify-center'>
+		<div className='w-full flex flex-col items-center relative pb-2 lg:pb-6 justify-center'>
+			<RetroGrid className='' />
 			<div className='mt-5 lg:mt-8 w-full justify-between font-ibm-mono text-sm font-semibold items-start inline-flex'>
 				<div className='text-purple-100 hidden lg:block'>
 					HIGHLIGHT • ${coin.ticker}
