@@ -52,14 +52,7 @@ const Home = () => {
 					<CoinCardSkeleton key={9} />
 				</div>
 			) : viewMode === ViewMode.GRID ? (
-				<div
-					className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 w-full'
-					{...(!isMobile &&
-						!explicitlyPaused && {
-							onMouseEnter: pause,
-							onMouseLeave: unpause,
-						})}
-				>
+				<div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 w-full'>
 					<AnimatePresence>
 						{coins.map(coin => (
 							<motion.div
@@ -81,8 +74,8 @@ const Home = () => {
 					{...(!isMobile &&
 						!explicitlyPaused && {
 							onMouseEnter: pause,
-							onMouseLeave: unpause,
 						})}
+					{...(!explicitlyPaused && { onMouseLeave: unpause })}
 				>
 					<TableView coins={coins} />
 				</div>

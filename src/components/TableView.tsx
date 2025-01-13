@@ -59,14 +59,14 @@ export default function TableView({ coins }: { coins: Coin[] }) {
 							<motion.tr
 								key={coin.ca}
 								initial={
-									isNewCoin(coin.ca)
+									coin.ca && isNewCoin(coin.ca)
 										? {
 												backgroundColor: 'rgb(147, 51, 234)',
 												opacity: 0.7,
 										  }
 										: false
 								}
-								animate={{ backgroundColor: 'rgb(17, 17, 17)', opacity: 1 }}
+								animate={{ backgroundColor: 'rgb(17, 17, 17)' }}
 								transition={{ duration: 0.3 }}
 								className='!cursor-pointer first:border-t-0 lg:first:border-t border-t border-dark-700 hover:bg-dark-750 hover:opacity-80 text-light-100 font-ibm-mono font-semibold uppercase text-sm lg:table-row flex items-center'
 								onClick={() => navigate(`/coin/${coin.ca}`)}
