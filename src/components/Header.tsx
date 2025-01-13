@@ -1,3 +1,4 @@
+import CloseIcon from '@/assets/icons/CloseIcon'
 import DiscoverIcon from '@/assets/icons/DiscoverIcon'
 import ExitIcon from '@/assets/icons/ExitIcon'
 import LogoMzipIcon from '@/assets/icons/LogoMzipIcon'
@@ -61,7 +62,7 @@ export default function Header() {
 	}, [])
 
 	return (
-		<div className='w-full sticky md:static top-0 px-4 md:px-8 py-2.5 md:py-4 border-b border-neutral-800 bg-dark-800 z-20 items-center justify-center flex'>
+		<div className='w-full sticky top-0 px-4 md:px-8 py-2.5 md:py-4 border-b border-neutral-800 bg-dark-800 z-20 items-center justify-center flex'>
 			<div className='flex items-center gap-2 md:gap-4 w-full max-w-[1376px] justify-between'>
 				<div className='justify-start items-center gap-6 flex'>
 					<Link to='/' className='justify-start items-center gap-2 flex'>
@@ -140,7 +141,7 @@ export default function Header() {
 					className='md:hidden block icn-white-hover h-[38px] pl-1'
 					onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
 				>
-					<MenuIcon />
+					{isMobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
 				</button>
 			</div>
 
