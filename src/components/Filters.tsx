@@ -1,15 +1,16 @@
 import LockIcon from '@/assets/icons/LockIcon'
+import { useFilterStore } from '@/store/filterStore'
 import { useEffect, useRef, useState } from 'react'
 import CoinTabs from './CoinTabs'
 import Dropdown from './Dropdown'
 import LayoutTab from './LayoutTab'
 
-const isMobile: boolean = window.innerWidth < 1440
+const isMobile: boolean = window.innerWidth < 1024
 
 export default function Filters() {
 	const [isSticky, setIsSticky] = useState(false)
 	const stickyRef = useRef<HTMLDivElement>(null)
-
+	const { filtersShown, hideFilters, showFilters } = useFilterStore()
 	useEffect(() => {
 		const handleScroll = () => {
 			if (stickyRef.current) {
@@ -20,6 +21,12 @@ export default function Filters() {
 					shouldBeSticky,
 					currentlySticky: isSticky,
 				})
+
+				if (shouldBeSticky && !isSticky) {
+					hideFilters()
+				} else if (!shouldBeSticky && isSticky) {
+					showFilters()
+				}
 				setIsSticky(shouldBeSticky)
 			}
 		}
@@ -37,7 +44,7 @@ export default function Filters() {
 		<>
 			<div
 				ref={stickyRef}
-				className={`sticky top-[59px] md:top-[71px] px-4 lg:px-8  z-20 bg-dark-900 bg-dark-800 border-b w-screen transition-shadow duration-200 ${
+				className={`sticky top-[59px] md:top-[71px] px-4 md:px-8  z-20 bg-dark-900 bg-dark-800 border-b w-screen transition-shadow duration-200 ${
 					isSticky
 						? 'shadow-[0_4px_12px_rgba(0,0,0,0.3)]  border-dark-700'
 						: 'border-dark-800'
@@ -49,8 +56,14 @@ export default function Filters() {
 					}`}
 				>
 					<div className=' flex flex-col -pb-[1px] lg:flex-row items-center pt-4 gap-4'>
-						<CoinTabs />
-						<div className='lg:ml-auto self-stretch lg:mt-0 flex items-center lg:gap-6 gap-4'>
+						<CoinTabs isSticky={isSticky} />
+						<div
+							className={`${
+								filtersShown || !isMobile
+									? 'lg:ml-auto self-stretch lg:mt-0 flex items-center lg:gap-6 gap-4'
+									: 'hidden'
+							}`}
+						>
 							<Dropdown
 								className='max-w-fit h-[38px] pb-[14px]'
 								align={isMobile ? 'left' : 'right'}
