@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-export type ModalType = 'profile' | null
+export type ModalType = 'profile' | 'pfp' | null
 
 interface ModalState {
 	currentModal: ModalType
