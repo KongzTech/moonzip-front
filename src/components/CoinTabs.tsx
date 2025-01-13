@@ -42,7 +42,7 @@ export default function CoinTabs() {
 				AMM
 			</Tab>
 			<div
-				className={`cursor-pointer ml-auto lg:ml-0 h-[38px] items-center justify-start icn-white-hover ${
+				className={`cursor-pointer ml-auto lg:ml-0 h-[38px] items-center justify-start md:icn-white-hover ${
 					isPaused ? 'icn-red' : ''
 				}`}
 				onClick={isPaused ? explicitlyUnpause : explicitlyPause}
