@@ -71,6 +71,7 @@ export default function TableView({ coins }: { coins: Coin[] }) {
 											className='w-8 h-8 lg:w-9 lg:h-9 rounded-[10px]'
 											src={coin.image}
 											alt={coin.name}
+											draggable='false'
 										/>
 										<div className='flex flex-col lg:flex-row gap-1 lg:gap-2 max-w-[80px] lg:max-w-[400px] overflow-hidden'>
 											<div className='text-light-0 capitalize truncate '>

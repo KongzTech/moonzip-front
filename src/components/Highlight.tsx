@@ -101,6 +101,7 @@ export default function Highlight() {
 				<div className=' justify-start items-center gap-2.5 flex'>
 					<img
 						className='w-[80px] h-[80px] lg:w-[104px] lg:h-[104px] rounded-[10px]'
+						draggable='false'
 						src={coin.image}
 					/>
 				</div>

@@ -21,8 +21,8 @@ export default function ProfileModal() {
 	const setMoonHandle = useUserStore(state => state.setMoonHandle)
 
 	return (
-		<div className='fixed inset-0 bg-black/50 flex items-center justify-center z-[200]'>
-			<div className='md:w-[324px] w-full bg-dark-800 rounded-t-[20px] md:rounded-[20px] p-6 flex flex-col items-center md:relative absolute bottom-0'>
+		<div className='fixed inset-0 bg-black/50 flex items-end md:items-center justify-center z-[200]'>
+			<div className='md:w-[324px] w-full bg-dark-800 rounded-t-[20px] md:rounded-[20px] p-6 flex flex-col items-center'>
 				{/* Close Button */}
 				<button
 					onClick={closeModal}
@@ -45,20 +45,6 @@ export default function ProfileModal() {
 				<form className='w-full'>
 					<div className='flex flex-col gap-2'>
 						<label className='text-light-100 text-sm font-semibold font-ibm-mono uppercase'>
-							Moon handle
-						</label>
-						<Input
-							value={moonHandle}
-							onChange={e => setMoonHandle(e.target.value)}
-							placeholder={`@ ${walletAddress.slice(
-								0,
-								5
-							)}...${walletAddress.slice(-5)}`}
-							className='w-full mb-5'
-						/>
-					</div>
-					<div className='flex flex-col gap-2'>
-						<label className='text-light-100 text-sm font-semibold font-ibm-mono uppercase'>
 							Selected pfp
 						</label>
 						<div
@@ -74,6 +60,20 @@ export default function ProfileModal() {
 							</div>
 							<ChevronRightIcon />
 						</div>
+					</div>
+					<div className='flex flex-col gap-2'>
+						<label className='text-light-100 text-sm font-semibold font-ibm-mono uppercase'>
+							Moon handle
+						</label>
+						<Input
+							value={moonHandle}
+							onChange={e => setMoonHandle(e.target.value)}
+							placeholder={`@ ${walletAddress.slice(
+								0,
+								5
+							)}...${walletAddress.slice(-5)}`}
+							className='w-full mb-5'
+						/>
 					</div>
 
 					<Button className='w-full' onClick={closeModal}>

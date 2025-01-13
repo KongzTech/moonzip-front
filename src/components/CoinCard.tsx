@@ -28,6 +28,7 @@ export default function CoinCard({ coin }: { coin: Coin }) {
 				<div className='self-stretch justify-start items-center gap-4 inline-flex'>
 					<img
 						className='w-16 h-16 rounded-[10px] transition-all duration-200 ease-out group-hover:scale-[0.96] group-active:scale-[0.9]'
+						draggable='false'
 						src={coin.image}
 					/>
 
