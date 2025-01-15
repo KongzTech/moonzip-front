@@ -279,36 +279,52 @@ const CreateCoin = () => {
 					className='space-y-6 py-8 lg:mt-[92px] border-dark-800 border lg:border-dark-700 rounded-xl flex-1 
         flex flex-col justify-start items-center'
 				>
-					<div className='w-full lg:max-w-[340px]'>
+					<div className='w-full flex flex-col gap-5 lg:max-w-[340px]'>
 						<h2 className='font-bold font-barlow text-xl text-light-0'>
 							Coin Details
 						</h2>
 
 						{/* Image Upload */}
-						<div className='space-y-6 mt-6'>
+						<div className=''>
 							<div
-								{...getRootProps()}
-								className='border-2 relative border-dashed h-[120px] border-dark-700 rounded-xl p-5 flex flex-col items-center justify-center text-center cursor-pointer hover:border-light-600'
+								{...getRootProps({
+									onClick: e => e.stopPropagation(),
+								})}
+								className={`relative h-[120px] rounded-xl p-5 flex flex-col items-center justify-center text-center ${
+									image
+										? 'bg-dark-700'
+										: `border-2 border-dashed border-dark-700 ${
+												isDragActive
+													? 'border-light-0 bg-dark-800'
+													: 'hover:border-light-600'
+										  }`
+								}`}
 							>
 								<input {...getInputProps()} />
 								{image ? (
-									<div className='flex flex-col items-center gap-4 relative w-full'>
+									<div className='flex items-center gap-4 relative w-full'>
 										<button
 											onClick={e => {
 												e.stopPropagation()
 												setImage(null)
 											}}
-											className='absolute right-0 top-0 flex items-center gap-1 text-light-100 hover:text-light-0'
+											className='absolute right-0 top-0 flex items-center gap-1 text-light-100'
 										>
 											<CloseIcon />
-											<span className='text-sm'>Cancel</span>
 										</button>
 										<img
 											src={URL.createObjectURL(image)}
 											alt='Preview'
 											className='w-16 h-16 object-cover rounded-lg'
 										/>
-										<div className='text-light-0'>Selected: {image.name}</div>
+										<div className='text-light-0 text-start flex uppercase flex-col gap-2'>
+											<p className='text-sm text-light-100'>Selected:</p>
+											{image.name.length > 20
+												? `${image.name.slice(0, 16)}...${image.name.slice(
+														image.name.lastIndexOf('.')
+												  )}`
+												: image.name}
+										</div>
 									</div>
 								) : (
 									<>
@@ -317,20 +333,23 @@ const CreateCoin = () => {
 												? 'Drop the files here ...'
 												: 'Drag and drop an image or video'}
 										</div>
-										<ButtonSecondary
-											onClick={() => {
-												const input = document.createElement('input')
-												input.type = 'file'
-												input.accept = 'image/*'
-												input.onchange = e => {
-													const file = (e.target as HTMLInputElement).files?.[0]
-													if (file) setImage(file)
-												}
-												input.click()
-											}}
-										>
-											Upload File
-										</ButtonSecondary>
+										{!isDragActive && (
+											<ButtonSecondary
+												onClick={() => {
+													const input = document.createElement('input')
+													input.type = 'file'
+													input.accept = 'image/*'
+													input.onchange = e => {
+														const file = (e.target as HTMLInputElement)
+															.files?.[0]
+														if (file) setImage(file)
+													}
+													input.click()
+												}}
+											>
+												Upload File
+											</ButtonSecondary>
+										)}
 									</>
 								)}
 							</div>
