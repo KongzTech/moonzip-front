@@ -8,13 +8,20 @@ import {
 } from '@/store/filterStore'
 import { ReactNode, useEffect, useRef, useState } from 'react'
 
-type DropdownType = 'sort' | 'coinType' | 'devLock' | 'viewMode'
+type DropdownType =
+	| 'sort'
+	| 'coinType'
+	| 'devLock'
+	| 'viewMode'
+	| 'launchPeriod'
 
 interface DropdownProps {
 	type: DropdownType
 	className?: string
 	align?: 'left' | 'right'
 	children?: ReactNode
+	value?: string
+	onChange?: (value: string) => void
 }
 
 export default function Dropdown({
@@ -22,6 +29,8 @@ export default function Dropdown({
 	className = '',
 	align = 'left',
 	children,
+	value,
+	onChange,
 }: DropdownProps) {
 	const [isOpen, setIsOpen] = useState(false)
 	const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
@@ -48,6 +57,8 @@ export default function Dropdown({
 				return Object.values(DevLockDuration)
 			case 'viewMode':
 				return Object.values(ViewMode)
+			case 'launchPeriod':
+				return ['30 Min', '1 Hour', '2 Hours']
 			default:
 				return []
 		}
@@ -63,25 +74,31 @@ export default function Dropdown({
 				return devLock
 			case 'viewMode':
 				return viewMode
+			case 'launchPeriod':
+				return value
 			default:
 				return ''
 		}
 	}
 
 	const handleSelect = (option: string) => {
-		switch (type) {
-			case 'sort':
-				setSortBy(option as SortOption)
-				break
-			case 'coinType':
-				setCoinType(option as CoinType)
-				break
-			case 'devLock':
-				setDevLock(option as DevLockDuration)
-				break
-			case 'viewMode':
-				setViewMode(option as ViewMode)
-				break
+		if (onChange) {
+			onChange(option)
+		} else {
+			switch (type) {
+				case 'sort':
+					setSortBy(option as SortOption)
+					break
+				case 'coinType':
+					setCoinType(option as CoinType)
+					break
+				case 'devLock':
+					setDevLock(option as DevLockDuration)
+					break
+				case 'viewMode':
+					setViewMode(option as ViewMode)
+					break
+			}
 		}
 		setIsOpen(false)
 		setSelectedIndex(null)

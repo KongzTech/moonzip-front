@@ -35,7 +35,7 @@ body {
 	background-color: #111111;
 	overflow-x: hidden;
 	width: 100%;
-	min-height: 100vh; /* Add this to ensure full height */
+	min-height: 100vh;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -76,4 +76,28 @@ body {
 
 .icn-white-hover:hover > svg path[fill] {
 	fill: #ffffff;
+}
+
+.icn-blue svg path[stroke] {
+	stroke: #a1d9ee;
+}
+
+.icn-blue svg path[fill] {
+	fill: #a1d9ee;
+}
+
+.icn-yellow svg path[stroke] {
+	stroke: #eed6a1;
+}
+
+.icn-yellow svg path[fill] {
+	fill: #eed6a1;
+}
+
+.icn-green svg path[stroke] {
+	stroke: #a1eebf;
+}
+
+.icn-green svg path[fill] {
+	fill: #a1eebf;
 }

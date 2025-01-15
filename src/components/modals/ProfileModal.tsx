@@ -21,8 +21,15 @@ export default function ProfileModal() {
 	const setMoonHandle = useUserStore(state => state.setMoonHandle)
 
 	return (
-		<div className='fixed inset-0 bg-black/50 flex items-end md:items-center justify-center z-[200]'>
-			<div className='md:w-[324px] w-full bg-dark-800 rounded-t-[20px] md:rounded-[20px] p-6 flex flex-col items-center'>
+		<div
+			className='fixed inset-0 bg-black/50 flex items-end md:items-center justify-center z-[200]'
+			onClick={e => {
+				if (e.target === e.currentTarget) {
+					closeModal()
+				}
+			}}
+		>
+			<div className='md:w-[324px] w-full relative bg-dark-800 rounded-t-[20px] md:rounded-[20px] p-6 flex flex-col items-center'>
 				{/* Close Button */}
 				<button
 					onClick={closeModal}

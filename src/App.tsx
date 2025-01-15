@@ -17,7 +17,8 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import '@solana/wallet-adapter-react-ui/styles.css'
 
 export default function App() {
-	const endpoint = 'https://api.mainnet-beta.solana.com'
+	const endpoint =
+		'https://solana-mainnet.rpc.extrnode.com/5eafc778-9601-4a48-bf59-311e97ea4f6e'
 	const wallets = useMemo(() => [new PhantomWalletAdapter()], [])
 
 	return (

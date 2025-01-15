@@ -1,8 +1,8 @@
 import DiscoverIcon from '@/assets/icons/DiscoverIcon'
 import RocketIcon from '@/assets/icons/RocketIcon'
+import { useModalStore } from '@/store/modalStore'
 import { useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-
 interface MobileMenuProps {
 	setIsMobileMenuOpen: (isOpen: boolean) => void
 }
@@ -11,7 +11,7 @@ export default function MobileMenu({ setIsMobileMenuOpen }: MobileMenuProps) {
 	const dropdownRef = useRef<HTMLDivElement>(null)
 	const location = useLocation()
 	const currentPath = location.pathname
-
+	const { openModal } = useModalStore()
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (
@@ -56,6 +56,12 @@ export default function MobileMenu({ setIsMobileMenuOpen }: MobileMenuProps) {
 					<RocketIcon />
 					<span className='font-ibm-mono font-semibold'>LAUNCH NEW COIN</span>
 				</Link>
+				<button
+					onClick={() => openModal('profile')}
+					className='text-light-100 text-sm font-ibm-mono font-semibold'
+				>
+					SIGN IN
+				</button>
 			</div>
 		</div>
 	)
