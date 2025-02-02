@@ -16,6 +16,7 @@
     "@solana/wallet-adapter-wallets": "^0.19.32",
     "@solana/web3.js": "^1.98.0",
     "@types/react-dropzone": "^5.1.0",
+    "date-fns": "^4.1.0",
     "framer-motion": "^11.17.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

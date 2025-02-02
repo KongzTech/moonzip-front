@@ -14,6 +14,8 @@ type DropdownType =
 	| 'devLock'
 	| 'viewMode'
 	| 'launchPeriod'
+	| 'actions'
+	| 'tokenType'
 
 interface DropdownProps {
 	type: DropdownType
@@ -59,6 +61,10 @@ export default function Dropdown({
 				return Object.values(ViewMode)
 			case 'launchPeriod':
 				return ['30 Min', '1 Hour', '2 Hours']
+			case 'actions':
+				return ['Unwrap', 'Settings']
+			case 'tokenType':
+				return [`${value}`, `mw${value}`]
 			default:
 				return []
 		}
@@ -160,9 +166,11 @@ export default function Dropdown({
 			>
 				{children}
 				{getCurrentValue()}
-				<ChevronDownIcon
-					className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}
-				/>
+				{type !== 'actions' && (
+					<ChevronDownIcon
+						className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}
+					/>
+				)}
 			</button>
 
 			{isOpen && (

@@ -6,7 +6,10 @@ import LockIcon from '@/assets/icons/LockIcon'
 import MzipIcon from '@/assets/icons/MzipIcon'
 import PoolIcon from '@/assets/icons/PoolIcon'
 import PumpIcon from '@/assets/icons/PumpIcon'
+import TelegramIcon from '@/assets/icons/Telegram'
 import TimerIcon from '@/assets/icons/TimerIcon'
+import TwitterIcon from '@/assets/icons/TwitterIcon'
+import WebsiteIcon from '@/assets/icons/WebsiteIcon'
 import Button from '@/components/Button'
 import ButtonSecondary from '@/components/ButtonSecondary'
 import Dropdown from '@/components/Dropdown'
@@ -32,7 +35,7 @@ const CreateCoin = () => {
 					website: '',
 					telegram: '',
 					twitter: '',
-					launchPeriod: '30',
+					launchPeriod: '30 Min',
 					launchType: 'pool',
 					devBuyAmount: '0.78',
 					lockPeriod: '1',
@@ -206,7 +209,7 @@ const CreateCoin = () => {
 												})
 											}
 										/>
-										<div className='absolute right-3 top-1/2 -translate-y-1/2 text-light-100 text-base md:block hidden opacity-30'>
+										<div className='absolute right-3 top-1/2 -translate-y-1/2 text-light-100 text-base opacity-30'>
 											SOL
 										</div>
 									</div>
@@ -442,6 +445,7 @@ const CreateCoin = () => {
 									<ButtonSecondary
 										onClick={() => updateParams({ website: ' ' })}
 									>
+										<WebsiteIcon />
 										ADD WEBSITE
 									</ButtonSecondary>
 								)}
@@ -449,6 +453,7 @@ const CreateCoin = () => {
 									<ButtonSecondary
 										onClick={() => updateParams({ telegram: ' ' })}
 									>
+										<TelegramIcon />
 										ADD TELEGRAM
 									</ButtonSecondary>
 								)}
@@ -456,6 +461,7 @@ const CreateCoin = () => {
 									<ButtonSecondary
 										onClick={() => updateParams({ twitter: ' ' })}
 									>
+										<TwitterIcon />
 										ADD TWITTER
 									</ButtonSecondary>
 								)}
