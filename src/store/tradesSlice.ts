@@ -1,30 +1,6 @@
 import { Trade } from '@/types/trade'
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-// Sample data generator
-const generateSampleTrades = (page: number): Trade[] => {
-	const sampleTrades: Trade[] = []
-	const baseTimestamp = Date.now()
-
-	for (let i = 0; i < 10; i++) {
-		sampleTrades.push({
-			userAddress: `User${(page - 1) * 10 + i + 1}`,
-			profilePicture:
-				'https://api.dicebear.com/7.x/pixel-art/svg?seed=' + Math.random(),
-			type: Math.random() > 0.5 ? 'BUY' : 'SELL',
-			solAmount: +(Math.random() * 10).toFixed(2),
-			coinAmount: +(Math.random() * 1000000).toFixed(0),
-			timestamp: new Date(baseTimestamp - i * 60000), // Each trade 1 minute apart
-			txHash: `${Math.random().toString(36).substring(2, 15)}${Math.random()
-				.toString(36)
-				.substring(2, 15)}`,
-		})
-	}
-
-	return sampleTrades
-}
-
-// Generate a single sample trade
 const generateSingleTrade = (): Trade => {
 	return {
 		userAddress: `User${Math.floor(Math.random() * 1000)}`,
@@ -57,23 +33,21 @@ const initialState: TradesState = {
 	minSolValue: 'Any',
 }
 
-// This is a thunk that would update trades via a WebSocket or API call.
-// Here we simulate a fetch call.
 export const fetchTradesForPage = createAsyncThunk(
 	'trades/fetchTradesForPage',
 	async ({ page, minSolValue }: { page: number; minSolValue: string }) => {
-		// Simulate API call
 		const response = await fetch(
 			`/api/trades?page=${page}&minSolValue=${minSolValue}`
 		)
 		const data = await response.json()
-		// Convert timestamp strings to Date objects before returning
+
 		return {
-			...data,
-			trades: data.trades.map((trade: any) => ({
+			trades: data.trades.map((trade: Trade) => ({
 				...trade,
 				timestamp: new Date(trade.timestamp).toISOString(),
 			})),
+			totalPages: data.totalPages,
+			page,
 		}
 	}
 )
@@ -99,12 +73,16 @@ const tradesSlice = createSlice({
 			fetchTradesForPage.fulfilled,
 			(
 				state,
-				action: PayloadAction<{ trades: Trade[]; totalPages: number }>
+				action: PayloadAction<{
+					trades: Trade[]
+					totalPages: number
+					page: number
+				}>
 			) => {
 				state.loading = false
 				// Ensure we always have exactly 10 trades
 				state.trades = action.payload.trades.slice(0, 10)
-				state.currentPage = action.meta.arg
+				state.currentPage = action.payload.page
 				state.totalPages = action.payload.totalPages
 			}
 		)
