@@ -24,6 +24,7 @@ import { formatTimeAgo } from '@/utils/formatTime'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
+import {PriceChart} from "@/components/PriceChart";
 
 const CoinDetails = () => {
 	const dispatch = useDispatch<AppDispatch>()
@@ -60,9 +61,6 @@ const CoinDetails = () => {
 
 	const coinData = sampleCoins.find(coin => coin.ca === coinCA)
 	const [tradingToken, setTradingToken] = useState(coinData?.ticker || '')
-
-	const [iframeLoaded, setIframeLoaded] = useState(false)
-
 	const [isTradingTerminalLoaded, setIsTradingTerminalLoaded] = useState(false)
 
 	useEffect(() => {
@@ -102,19 +100,9 @@ const CoinDetails = () => {
 						<span> • </span>
 						<p>{formatTimeAgo(coinData.createdAt.getTime())}</p>
 					</div>
-					{!iframeLoaded && (
-						<div className='w-full h-[320px] lg:h-[480px] bg-dark-700 rounded-lg animate-pulse' />
-					)}
-					<iframe
-						className={`w-full h-[320px] lg:h-[480px] ${
-							!iframeLoaded ? 'hidden' : ''
-						}`}
-						src='https://s.tradingview.com/widgetembed/?frameElementId=tradingview_cf8e1&symbol=SOLUSDT&interval=60&hidesidetoolbar=0&symboledit=1&saveimage=1&toolbarbg=f1f3f6&studies=%5B%5D&theme=dark&style=1&timezone=exchange'
-						style={{ border: 'none' }}
-						allowTransparency={true}
-						allowFullScreen={true}
-						onLoad={() => setIframeLoaded(true)}
-					></iframe>
+          <div className="p-2 relative flex flex-col gap-2 h-[320px] lg:h-[480px]">
+            <PriceChart projectId={coinCA || ""} tokenAddress={coinCA || ""} tokenSymbol="COIN" />
+          </div>
 				</div>
 
 				{/* Green: Token Description Section */}

@@ -7,3 +7,7 @@ export function formatNumber(num: number): string {
 	}
 	return num.toString()
 }
+
+export const formatNumberExact = (num: number | string, decimalPlaces = 4): string => {
+	return Number(num).toFixed(decimalPlaces);
+};
