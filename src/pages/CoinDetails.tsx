@@ -13,7 +13,7 @@ import TradingTerminal, {
 	TradingTerminalSkeleton,
 } from '@/components/TradingTerminal'
 import { sampleCoins } from '@/data/sampleCoins'
-import { RootState } from '@/store'
+import { AppDispatch, RootState } from '@/store'
 import {
 	addSampleData,
 	fetchTradesForPage,
@@ -24,8 +24,9 @@ import { formatTimeAgo } from '@/utils/formatTime'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
+
 const CoinDetails = () => {
-	const dispatch = useDispatch()
+	const dispatch = useDispatch<AppDispatch>()
 	useEffect(() => {
 		dispatch(fetchTradesForPage({ page: 1, minSolValue: '0' }))
 	}, [dispatch])
@@ -74,7 +75,7 @@ const CoinDetails = () => {
 	}
 
 	const handlePageChange = (page: number) => {
-		dispatch(fetchTradesForPage(page))
+		dispatch(fetchTradesForPage({ page, minSolValue }))
 	}
 
 	const shouldTruncate =
