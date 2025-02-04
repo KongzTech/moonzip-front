@@ -1,4 +1,4 @@
-import { Trade } from '@/types/trade'
+import { SerializedTrade, Trade } from '@/types/trade'
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 const generateSingleTrade = (): Trade => {
@@ -17,7 +17,7 @@ const generateSingleTrade = (): Trade => {
 }
 
 interface TradesState {
-	trades: Trade[]
+	trades: SerializedTrade[]
 	currentPage: number
 	totalPages: number
 	loading: boolean
@@ -30,7 +30,7 @@ const initialState: TradesState = {
 	currentPage: 1,
 	totalPages: 1,
 	loading: false,
-	minSolValue: 'Any',
+	minSolValue: '0',
 }
 
 export const fetchTradesForPage = createAsyncThunk(
@@ -41,11 +41,15 @@ export const fetchTradesForPage = createAsyncThunk(
 		)
 		const data = await response.json()
 
-		return {
-			trades: data.trades.map((trade: Trade) => ({
+		const serializedTrades: SerializedTrade[] = data.trades.map(
+			(trade: Trade) => ({
 				...trade,
 				timestamp: new Date(trade.timestamp).toISOString(),
-			})),
+			})
+		)
+
+		return {
+			trades: serializedTrades,
 			totalPages: data.totalPages,
 			page,
 		}
@@ -61,8 +65,11 @@ const tradesSlice = createSlice({
 		},
 		addSampleData: state => {
 			const newTrade = generateSingleTrade()
-			// Add new trade at the beginning and keep only 10 trades
-			state.trades = [newTrade, ...state.trades.slice(0, 9)]
+			const serializedTrade = {
+				...newTrade,
+				timestamp: newTrade.timestamp.toISOString(),
+			}
+			state.trades = [serializedTrade, ...state.trades.slice(0, 9)]
 		},
 	},
 	extraReducers: builder => {
@@ -74,13 +81,12 @@ const tradesSlice = createSlice({
 			(
 				state,
 				action: PayloadAction<{
-					trades: Trade[]
+					trades: SerializedTrade[]
 					totalPages: number
 					page: number
 				}>
 			) => {
 				state.loading = false
-				// Ensure we always have exactly 10 trades
 				state.trades = action.payload.trades.slice(0, 10)
 				state.currentPage = action.payload.page
 				state.totalPages = action.payload.totalPages

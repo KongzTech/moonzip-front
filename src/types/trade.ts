@@ -7,3 +7,7 @@ export interface Trade {
 	timestamp: Date
 	txHash: string
 }
+
+export interface SerializedTrade extends Omit<Trade, 'timestamp'> {
+	timestamp: string
+}

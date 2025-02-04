@@ -38,8 +38,11 @@ const CoinDetails = () => {
 	)
 	const navigate = useNavigate()
 
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [solBalance, setSolBalance] = useState(0)
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [coinBalance, setCoinBalance] = useState(0)
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [wCoinBalance, setWCoinBalance] = useState(832902)
 	const [tradingMode, setTradingMode] = useState('buy')
 	const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false)
@@ -243,11 +246,7 @@ const CoinDetails = () => {
 						<TradesSkeleton />
 					) : (
 						<>
-							<TradesTable
-								trades={trades}
-								coinTicker={coinData.ticker}
-								onFilterChange={() => {}} // We no longer need this since filtering is handled in CoinDetails
-							/>
+							<TradesTable trades={trades} coinTicker={coinData.ticker} />
 							<TradesPagination
 								currentPage={currentPage}
 								totalPages={totalPages}
