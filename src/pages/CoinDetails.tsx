@@ -38,14 +38,9 @@ const CoinDetails = () => {
 	)
 	const navigate = useNavigate()
 
-	const [solBalance, setSolBalance] = useState(0)
-	setSolBalance(20)
-
-	const [coinBalance, setCoinBalance] = useState(0)
-	setCoinBalance(90000)
-
-	const [wCoinBalance, setWCoinBalance] = useState(832902)
-	setWCoinBalance(832902)
+	const [solBalance] = useState(20)
+	const [coinBalance] = useState(90000)
+	const [wCoinBalance] = useState(832902)
 	const [tradingMode, setTradingMode] = useState('buy')
 	const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false)
 	const [maxChars, setMaxChars] = useState(100)
