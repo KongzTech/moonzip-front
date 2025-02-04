@@ -9,7 +9,7 @@ const TimerIcon = ({ className }: IconProps) => (
 		className={className}
 	>
 		<path
-			stroke='#fff'
+			stroke='#C9C9C9'
 			strokeLinecap='round'
 			strokeLinejoin='round'
 			strokeWidth={1.5}

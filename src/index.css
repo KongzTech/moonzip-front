@@ -101,3 +101,12 @@ body {
 .icn-green svg path[fill] {
 	fill: #a1eebf;
 }
+
+@media (min-width: 1024px) {
+	.lg-grid-areas {
+		grid-template-areas:
+			'chart terminal'
+			'trades terminal';
+		grid-template-rows: auto;
+	}
+}

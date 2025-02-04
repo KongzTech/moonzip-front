@@ -1,6 +1,6 @@
 import ArchiveIcon from '@/assets/icons/ArchiveIcon'
 import { sampleCoins } from '@/data/sampleCoins'
-import debounce from 'lodash/debounce'
+import { debounce } from 'lodash'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Input from './Input'

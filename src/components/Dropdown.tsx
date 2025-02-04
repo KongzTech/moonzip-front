@@ -16,6 +16,7 @@ type DropdownType =
 	| 'launchPeriod'
 	| 'actions'
 	| 'tokenType'
+	| 'solValue'
 
 interface DropdownProps {
 	type: DropdownType
@@ -23,6 +24,8 @@ interface DropdownProps {
 	align?: 'left' | 'right'
 	children?: ReactNode
 	value?: string
+
+	baseTicker?: string
 	onChange?: (value: string) => void
 }
 
@@ -32,6 +35,7 @@ export default function Dropdown({
 	align = 'left',
 	children,
 	value,
+	baseTicker,
 	onChange,
 }: DropdownProps) {
 	const [isOpen, setIsOpen] = useState(false)
@@ -63,8 +67,12 @@ export default function Dropdown({
 				return ['30 Min', '1 Hour', '2 Hours']
 			case 'actions':
 				return ['Unwrap', 'Settings']
-			case 'tokenType':
-				return [`${value}`, `mw${value}`]
+			case 'tokenType': {
+				const base = baseTicker || value
+				return [`${base}`, `mw${base}`]
+			}
+			case 'solValue':
+				return ['Any', '0.05 SOL', '0.1 SOL', '0.5 SOL', '1 SOL']
 			default:
 				return []
 		}
@@ -82,8 +90,12 @@ export default function Dropdown({
 				return viewMode
 			case 'launchPeriod':
 				return value
+			case 'solValue':
+				return value
+			case 'tokenType':
+				return value
 			default:
-				return ''
+				return value || ''
 		}
 	}
 
@@ -109,6 +121,13 @@ export default function Dropdown({
 		setIsOpen(false)
 		setSelectedIndex(null)
 	}
+
+	useEffect(() => {
+		const options = getOptions()
+		if (options.length > 0 && !value && onChange) {
+			onChange(options[0])
+		}
+	}, [])
 
 	const options = getOptions()
 

@@ -8,7 +8,7 @@ export const sampleCoins: Coin[] = [
 		mcap: 294170,
 		image: '/coin1.png',
 		description:
-			'CryptoUndeads is a collection of 10,000 unique NFTs on the Ethereum blockchain. Each NFT is a unique zombie character with a unique background and a unique set of attributes.',
+			'CryptoUndeads is a collection of 10,000 unique NFTs on the Ethereum blockchain. Each NFT is a unique zombie character with a unique background and a unique set of attributes.CryptoUndeads is a collection of 10,000 unique NFTs on the Ethereum blockchain. Each NFT is a unique zombie character with a unique background and a unique set of attributes.CryptoUndeads is a collection of 10,000 unique NFTs on the Ethereum blockchain. Each NFT is a unique zombie character with a unique background and a unique set of attributes.',
 		website: 'https://undeads.rip',
 		twitter: 'https://twitter.com/crypto_undead',
 		telegram: 'https://t.me/crypto_undead',
@@ -16,6 +16,8 @@ export const sampleCoins: Coin[] = [
 		score: 100,
 		graduation: new Date('2025-01-12T00:00:00Z'),
 		type: 'pool',
+		platform: 'pump',
+		createdAt: new Date('2024-01-15T10:30:00Z'),
 	},
 	{
 		name: 'FartCoin',
@@ -32,6 +34,8 @@ export const sampleCoins: Coin[] = [
 		score: 60,
 		graduation: new Date('2025-01-12T00:00:00Z'),
 		type: 'amm',
+		platform: 'mzip',
+		createdAt: new Date('2024-01-15T10:30:00Z'),
 	},
 	{
 		name: 'test griffain.com',
@@ -48,6 +52,8 @@ export const sampleCoins: Coin[] = [
 		score: 100,
 		graduation: new Date('2025-01-12T00:00:00Z'),
 		type: 'pool',
+		platform: 'pump',
+		createdAt: new Date('2024-01-15T10:30:00Z'),
 	},
 	{
 		name: 'Pudgy Penguins',
@@ -63,6 +69,8 @@ export const sampleCoins: Coin[] = [
 		score: 90,
 		graduation: new Date('2025-01-12T00:00:00Z'),
 		type: 'amm',
+		platform: 'mzip',
+		createdAt: new Date('2024-01-15T10:30:00Z'),
 	},
 	{
 		name: 'neur.sh',
@@ -78,6 +86,8 @@ export const sampleCoins: Coin[] = [
 		score: 90,
 		graduation: new Date('2025-01-12T00:00:00Z'),
 		type: 'amm',
+		platform: 'pump',
+		createdAt: new Date('2024-01-15T10:30:00Z'),
 	},
 	{
 		name: 'Alchemist AI',
@@ -94,5 +104,7 @@ export const sampleCoins: Coin[] = [
 		score: 100,
 		graduation: new Date('2025-01-12T00:00:00Z'),
 		type: 'pool',
+		platform: 'mzip',
+		createdAt: new Date('2024-01-15T10:30:00Z'),
 	},
 ]

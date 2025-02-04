@@ -12,4 +12,6 @@ export interface Coin {
 	score?: number
 	graduation?: Date
 	type?: string
+	platform?: 'pump' | 'mzip'
+	createdAt: Date
 }

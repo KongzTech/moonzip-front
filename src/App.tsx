@@ -4,6 +4,7 @@ import CoinDetails from '@/pages/CoinDetails'
 import CreateCoin from '@/pages/CreateCoin'
 import Home from '@/pages/Home'
 import Profile from '@/pages/Profile'
+import { store } from '@/store'
 import {
 	ConnectionProvider,
 	WalletProvider,
@@ -11,6 +12,7 @@ import {
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui'
 import { PhantomWalletAdapter } from '@solana/wallet-adapter-wallets'
 import { useMemo } from 'react'
+import { Provider } from 'react-redux'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 
 // Import wallet styles
@@ -22,21 +24,23 @@ export default function App() {
 	const wallets = useMemo(() => [new PhantomWalletAdapter()], [])
 
 	return (
-		<ConnectionProvider endpoint={endpoint}>
-			<WalletProvider wallets={wallets} autoConnect>
-				<WalletModalProvider>
-					<Router>
-						<ModalManager />
-						<Header />
-						<Routes>
-							<Route path='/' element={<Home />} />
-							<Route path='/profile' element={<Profile />} />
-							<Route path='/coin/:coinCA' element={<CoinDetails />} />
-							<Route path='/create' element={<CreateCoin />} />
-						</Routes>
-					</Router>
-				</WalletModalProvider>
-			</WalletProvider>
-		</ConnectionProvider>
+		<Provider store={store}>
+			<ConnectionProvider endpoint={endpoint}>
+				<WalletProvider wallets={wallets} autoConnect>
+					<WalletModalProvider>
+						<Router>
+							<ModalManager />
+							<Header />
+							<Routes>
+								<Route path='/' element={<Home />} />
+								<Route path='/profile' element={<Profile />} />
+								<Route path='/coin/:coinCA' element={<CoinDetails />} />
+								<Route path='/create' element={<CreateCoin />} />
+							</Routes>
+						</Router>
+					</WalletModalProvider>
+				</WalletProvider>
+			</ConnectionProvider>
+		</Provider>
 	)
 }

@@ -10,5 +10,6 @@ export const sampleHolders: Holder[] = [
 	{ address: '8FfAya', percentage: 0.65 },
 	{ address: 'HJDFss', percentage: 1.25 },
 	{ address: '8FfAya', percentage: 0.65 },
-	{ address: 'HJDFss', percentage: 1.25 },
+	{ address: 'HJDFsd', percentage: 1.25 },
+	{ address: 'JksdAdejjkdkfdsfj', percentage: 1.25 },
 ]

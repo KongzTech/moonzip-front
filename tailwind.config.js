@@ -115,6 +115,10 @@ export default {
 					'0%': { transform: 'translateY(0)' },
 					'100%': { transform: 'translateY(40px)' },
 				},
+				blink: {
+					'0%, 100%': { opacity: '0.2' },
+					'50%': { opacity: '0.8' },
+				},
 			},
 			animation: {
 				'pulse-subtle': 'pulse-subtle 2s ease-in-out infinite',

@@ -85,7 +85,7 @@ export default function Highlight() {
 					<div className='text-light-100'>
 						{isMobile ? '' : 'MCAP: '} ${formatNumber(coin.mcap ?? 0)}
 					</div>
-					<div className='justify-start items-center gap-1 ml-auto lg:ml-0 flex'>
+					<div className='justify-start items-center gap-1 ml-auto lg:ml-0 flex icn-white'>
 						<TimerIcon className='hidden lg:block' />
 						<div className='text-white'>
 							{isMobile ? '' : 'ENDS IN'} {formatTime(timeLeft)}

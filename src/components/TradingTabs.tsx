@@ -2,17 +2,20 @@ import BuyIcon from '@/assets/icons/BuyIcon'
 import SellIcon from '@/assets/icons/SellIcon'
 import VerticalDotsIcon from '@/assets/icons/VerticalDotsIcon'
 import { useModalStore } from '@/store/modalStore'
+import CircleTimer from './CircleTimer'
 import Dropdown from './Dropdown'
 import Tab from './Tab'
 
 interface TradingTabsProps {
 	tradingMode: string
 	setTradingMode: (mode: string) => void
+	onRefreshRate?: () => void
 }
 
 export default function TradingTabs({
 	tradingMode,
 	setTradingMode,
+	onRefreshRate,
 }: TradingTabsProps) {
 	const openModal = useModalStore(state => state.openModal)
 
@@ -42,6 +45,13 @@ export default function TradingTabs({
 			</Tab>
 
 			<div className='ml-auto flex items-center gap-2'>
+				{(tradingMode === 'buy' || tradingMode === 'sell') && onRefreshRate && (
+					<CircleTimer
+						duration={10}
+						onComplete={onRefreshRate}
+						onClick={onRefreshRate}
+					/>
+				)}
 				<Dropdown type='actions' align='right' onChange={handleActionSelect}>
 					<div className=' flex items-center justify-start icn-white-hover'>
 						<VerticalDotsIcon className='mb-max' />

@@ -15,7 +15,11 @@ const TopHolders = ({ holders }: TopHoldersProps) => {
 							<motion.tr
 								key={index}
 								initial={{ backgroundColor: 'rgb(147, 51, 234)', opacity: 0.7 }}
-								animate={{ backgroundColor: 'rgb(17, 17, 17)', opacity: 1 }}
+								animate={
+									holder.isDev
+										? { backgroundColor: '#262626', opacity: 1 }
+										: { backgroundColor: 'rgb(17, 17, 17)', opacity: 1 }
+								}
 								whileHover={{
 									backgroundColor: 'rgb(26, 26, 26)',
 									opacity: 0.8,
@@ -26,9 +30,18 @@ const TopHolders = ({ holders }: TopHoldersProps) => {
 								<td className='px-4 py-3 w-[200px]'>
 									<div className='flex items-center gap-2'>
 										{!holder.isDev && (
-											<span className='text-light-300'>#{index + 1}</span>
+											<span className='text-light-300 w-7'>#{index}</span>
 										)}
-										<span className='text-light-100'>{holder.address}</span>
+										<a
+											href={`https://solscan.io/account/${holder.address}`}
+											target='_blank'
+											rel='noopener noreferrer'
+											className='hover:underline'
+										>
+											<span className='text-light-100 font-semibold font-ibm-mono'>
+												{holder.address.slice(0, 6)}
+											</span>
+										</a>
 										{holder.isDev && (
 											<span className='bg-purple-100 text-dark-800 text-xs px-2 py-0.5 rounded font-semibold'>
 												DEV
@@ -37,7 +50,17 @@ const TopHolders = ({ holders }: TopHoldersProps) => {
 									</div>
 								</td>
 								<td className='px-4 py-3 flex-1 text-right'>
-									<span className='text-green-100'>
+									<span
+										className={`${
+											holder.isDev
+												? holder.percentage < 4
+													? 'text-green-100'
+													: holder.percentage < 10
+													? 'text-yellow-100'
+													: 'text-red-100'
+												: 'text-light-100'
+										}`}
+									>
 										{holder.percentage.toFixed(2)}%
 									</span>
 								</td>

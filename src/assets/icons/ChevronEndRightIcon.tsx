@@ -1,6 +1,6 @@
 import { IconProps } from '@/types'
 
-const ChevronLeftIcon = ({ className }: IconProps) => (
+const ChevronEndRightIcon = ({ className }: IconProps) => (
 	<svg
 		xmlns='http://www.w3.org/2000/svg'
 		width={24}
@@ -13,8 +13,8 @@ const ChevronLeftIcon = ({ className }: IconProps) => (
 			strokeLinecap='round'
 			strokeLinejoin='round'
 			strokeWidth={1.5}
-			d='M13.25 8.75 9.75 12l3.5 3.25'
+			d='M7.5 8.75 11 12l-3.5 3.25M16 7v10'
 		/>
 	</svg>
 )
-export default ChevronLeftIcon
+export default ChevronEndRightIcon
