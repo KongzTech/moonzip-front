@@ -38,12 +38,14 @@ const CoinDetails = () => {
 	)
 	const navigate = useNavigate()
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [solBalance, setSolBalance] = useState(0)
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	setSolBalance(20)
+
 	const [coinBalance, setCoinBalance] = useState(0)
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	setCoinBalance(90000)
+
 	const [wCoinBalance, setWCoinBalance] = useState(832902)
+	setWCoinBalance(832902)
 	const [tradingMode, setTradingMode] = useState('buy')
 	const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false)
 	const [maxChars, setMaxChars] = useState(100)
