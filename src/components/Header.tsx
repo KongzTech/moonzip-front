@@ -91,8 +91,10 @@ export default function Header() {
 							className='md:w-auto'
 							onClick={() => setIsWalletOpen(!isWalletOpen)}
 						>
-							<WalletIcon className='md:block hidden' />
-							<div>{balance.toFixed(2)} SOL</div>
+							<div className='flex gap-1 items-center px-3 h-[38px] lg:h-[34px]'>
+								<WalletIcon className='md:block hidden' />
+								<div>{balance.toFixed(2)} SOL</div>
+							</div>
 						</ButtonSecondary>
 
 						{isWalletOpen && (
