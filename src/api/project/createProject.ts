@@ -1,6 +1,6 @@
 import axios from "axios";
 import {API_URL} from "@/utils/constants.ts";
-import {CreateProjectForm} from "@/api/user/getProject.ts";
+import {CreateProjectForm} from "@/api/project/getProject.ts";
 
 export interface CreateProjectResponse {
     projectId: string;
